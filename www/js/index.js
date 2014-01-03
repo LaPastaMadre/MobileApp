@@ -27,39 +27,11 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        $( document ).on( "click", "#homeBtn", function() {
-        	var homeBtn = $("#homeView")[0];
-        	var ricetteBtn = $("#ricetteView")[0];
-        	var toolsBtn = $("#toolsView")[0];
-        	
-	
-			toolsBtn.setAttribute('style', 'display:none;');
-	        ricetteBtn.setAttribute('style', 'display:none;');
-	        homeBtn.setAttribute('style', 'display:block;');
+        $("#exitBtn").on("tap", function() {
+        	navigator.app.exitApp();
         });
         
-        $( document ).on( "click", "#ricetteBtn", function() {
-        	var homeBtn = $("#homeView")[0];
-        	var ricetteBtn = $("#ricetteView")[0];
-        	var toolsBtn = $("#toolsView")[0];
-        	
-	
-			homeBtn.setAttribute('style', 'display:none;');
-	        toolsBtn.setAttribute('style', 'display:none;');
-	        ricetteBtn.setAttribute('style', 'display:block;');
-        });
-        
-        $( document ).on( "click", "#toolsBtn", function() {
-        	var homeBtn = $("#homeView")[0];
-        	var ricetteBtn = $("#ricetteView")[0];
-        	var toolsBtn = $("#toolsView")[0];
-        	
-	
-			homeBtn.setAttribute('style', 'display:none;');
-	        ricetteBtn.setAttribute('style', 'display:none;');
-	        toolsBtn.setAttribute('style', 'display:block;');
-        });
-        $( document ).on( "pageinit", "#app", function() {
+        $( document ).on( "pageinit", "#homeView", function() {
 			    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
 			        var $ul = $( this ),
 			            $input = $( data.input ),
@@ -98,6 +70,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+    	/*
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -106,5 +79,6 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        */
     }
 };

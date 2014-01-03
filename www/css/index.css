@@ -49,8 +49,8 @@ body {
 	position:absolute;             /* position in the center of the screen */
     /*left:50%;
     top:50%;*/
-    height:760px;                   /* text area height */
-    width:480px;                   /* text area width */
+    /*height:760px;                   /* text area height */
+    /*width:480px;                   /* text area width */
     text-align:center;
     padding:10px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     /*margin:-115px 0px 0px -112px; */ /* offset vertical: half of image height and text area height */
@@ -58,16 +58,16 @@ body {
     
 }
 /* Portrait layout (default) */
-#homeView {
-    background:url(../img/sfondo.png) no-repeat center top; /* 170px x 200px */
+.logo {
+    background:url(../img/sfondo.png) no-repeat center top; /* 505px x 644px */
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+    .view {
+        background-position: center;
+        /*padding: 175px 100px 175px 170px; *//* padding-top + padding-bottom + text area = image height */
+        margin:65px 0px 0px 0px; /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
 }

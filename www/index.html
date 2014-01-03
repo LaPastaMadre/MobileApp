@@ -28,27 +28,72 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0.min.css" />
         <title>La Pasta Madre</title>
     </head>
-    <body>	    
-    	<div id="app">
-	        <div id="homeView" class="view">
-	            <h1>Apache Cordova</h1>
-	        </div>
-	        <div id="ricetteView" style="display:none;" class="view">
-	        	<h3>Cities worldwide</h3>
-				<p>After you enter <strong>at least three characters</strong> the autocomplete function will show all possible matches.</p>
-				<ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Find a city..." data-filter-theme="a"></ul>
-	        </div>
-	        <div id="toolsView" style="display:none;" class="view">
-	        	
-	        </div>
-        </div>
-        <div data-role="navbar" class="nav-glyphish-example">
-		    <ul>
-		        <li><a href="#" id="homeBtn" data-icon="custom" class="ui-btn-active">Home</a></li>
-		        <li><a href="#" id="ricetteBtn" data-icon="custom">Ricette</a></li>
-		        <li><a href="#" id="toolsBtn" data-icon="custom">Tools</a></li>
-		    </ul>
-	    </div>
+    <body>
+        <div data-role="page" id="homeView">
+		    <div data-theme="" data-role="header">
+		    	<h1>La Pasta Madre - Home</h1>
+		    </div>
+		 
+		    <div data-role="content">
+		    	<img src="img/sfondo.png">
+		    </div>
+		 
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
+				    <ul>
+				        <li><a href="#homeView" id="homeBtn" data-icon="custom" class="ui-btn-active">Home</a></li>
+				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom">Ricette</a></li>
+				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom">Tools</a></li>
+				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
+				    </ul>
+			    </div>
+		    </div>
+		</div>
+		<div data-role="page" id="ricetteView">
+		    <div data-theme="" data-role="header">
+		        <h3>La Pasta Madre</h3>
+		    </div>
+		 
+		    <div data-role="content">		        
+		        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
+				<li><a hred="#">Pane</a></li>
+				<li><a hred="#">Pizza</a></li>
+				<li><a hred="#">Torte</a></li>
+				<li><a hred="#">Panificati Vari</a></li>
+				<li><a hred="#">Grandi Lievitati</a></li>
+			</ul>
+		    </div>
+		 
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
+				    <ul>
+				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
+				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom" class="ui-btn-active">Ricette</a></li>
+				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom">Tools</a></li>
+				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
+				    </ul>
+			    </div>		        
+		    </div>
+		</div>
+		<div data-role="page" id="toolsView">
+		    <div data-theme="" data-role="header">
+		        <h3>La Pasta Madre</h3>
+		    </div>
+		 
+		    <div data-role="content">
+		    </div>
+		 
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
+				    <ul>
+				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
+				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom">Ricette</a></li>
+				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom" class="ui-btn-active">Tools</a></li>
+				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
+				    </ul>
+			    </div>		        
+		    </div>
+		</div>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
