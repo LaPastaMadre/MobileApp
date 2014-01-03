@@ -31,11 +31,14 @@
     <body>
         <div data-role="page" id="homeView">
 		    <div data-theme="" data-role="header">
-		    	<h1>La Pasta Madre - Home</h1>
+		    	<h3>La Pasta Madre - Home</h3>
+		    	<a href="#aboutView" data-role="button" class="ui-btn-right">Info...</a>
 		    </div>
 		 
 		    <div data-role="content">
-		    	<img src="img/sfondo.png">
+		    	<center>
+		    		<img src="img/sfondo.png">
+		    	</center>
 		    </div>
 		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
@@ -80,8 +83,12 @@
 		        <h3>La Pasta Madre</h3>
 		    </div>
 		 
-		    <div data-role="content">
-		    </div>
+		    <div data-role="content">		        
+		        <ul id="autocomplete" data-role="listview">
+					<li><a hred="#">Convertitore Lievito</a></li>
+				</ul>
+			</div>
+			
 		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">

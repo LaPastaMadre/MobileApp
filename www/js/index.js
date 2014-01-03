@@ -27,11 +27,14 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        $("#exitBtn").on("tap", function() {
+        $("#exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
         
         $( document ).on( "pageinit", "#homeView", function() {
+        	$("div[data-role='page']").each(function(){
+	    		this.setAttribute("style","background-color: #EAE8F5");
+	    	});
 			    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
 			        var $ul = $( this ),
 			            $input = $( data.input ),
