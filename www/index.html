@@ -28,21 +28,27 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0.min.css" />
         <title>La Pasta Madre</title>
     </head>
-    <body>
-	    <div data-role="navbar" class="nav-glyphish-example">
+    <body>	    
+    	<div id="app">
+	        <div id="homeView" class="view">
+	            <h1>Apache Cordova</h1>
+	        </div>
+	        <div id="ricetteView" style="display:none;" class="view">
+	        	<h3>Cities worldwide</h3>
+				<p>After you enter <strong>at least three characters</strong> the autocomplete function will show all possible matches.</p>
+				<ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Find a city..." data-filter-theme="a"></ul>
+	        </div>
+	        <div id="toolsView" style="display:none;" class="view">
+	        	
+	        </div>
+        </div>
+        <div data-role="navbar" class="nav-glyphish-example">
 		    <ul>
-		        <li><a href="#" id="home" data-icon="custom" class="ui-btn-active">Home</a></li>
-		        <li><a href="#" id="ricette" data-icon="custom">Ricette</a></li>
-		        <li><a href="#" id="tools" data-icon="custom">Tools</a></li>
+		        <li><a href="#" id="homeBtn" data-icon="custom" class="ui-btn-active">Home</a></li>
+		        <li><a href="#" id="ricetteBtn" data-icon="custom">Ricette</a></li>
+		        <li><a href="#" id="toolsBtn" data-icon="custom">Tools</a></li>
 		    </ul>
 	    </div>
-        <div class="app">
-            <h1>Apache Cordova</h1>            
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device...</p>
-                <p class="event received">- Device is Ready -</p>
-            </div>
-        </div>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>

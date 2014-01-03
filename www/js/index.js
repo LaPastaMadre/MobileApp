@@ -27,6 +27,67 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        $( document ).on( "click", "#homeBtn", function() {
+        	var homeBtn = $("#homeView")[0];
+        	var ricetteBtn = $("#ricetteView")[0];
+        	var toolsBtn = $("#toolsView")[0];
+        	
+	
+			toolsBtn.setAttribute('style', 'display:none;');
+	        ricetteBtn.setAttribute('style', 'display:none;');
+	        homeBtn.setAttribute('style', 'display:block;');
+        });
+        
+        $( document ).on( "click", "#ricetteBtn", function() {
+        	var homeBtn = $("#homeView")[0];
+        	var ricetteBtn = $("#ricetteView")[0];
+        	var toolsBtn = $("#toolsView")[0];
+        	
+	
+			homeBtn.setAttribute('style', 'display:none;');
+	        toolsBtn.setAttribute('style', 'display:none;');
+	        ricetteBtn.setAttribute('style', 'display:block;');
+        });
+        
+        $( document ).on( "click", "#toolsBtn", function() {
+        	var homeBtn = $("#homeView")[0];
+        	var ricetteBtn = $("#ricetteView")[0];
+        	var toolsBtn = $("#toolsView")[0];
+        	
+	
+			homeBtn.setAttribute('style', 'display:none;');
+	        ricetteBtn.setAttribute('style', 'display:none;');
+	        toolsBtn.setAttribute('style', 'display:block;');
+        });
+        $( document ).on( "pageinit", "#app", function() {
+			    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
+			        var $ul = $( this ),
+			            $input = $( data.input ),
+			            value = $input.val(),
+			            html = "";
+			        $ul.html( "" );
+			        if ( value && value.length > 2 ) {
+			            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+			            $ul.listview( "refresh" );
+			            $.ajax({
+			                url: "http://gd.geobytes.com/AutoCompleteCity",
+			                dataType: "jsonp",
+			                crossDomain: true,
+			                data: {
+			                    q: $input.val()
+			                }
+			            })
+			            .then( function ( response ) {
+			                $.each( response, function ( i, val ) {
+			                    html += "<li>" + val + "</li>";
+			                });
+			                $ul.html( html );
+			                $ul.listview( "refresh" );
+			                $ul.trigger( "updatelayout");
+			            });
+			        }
+			    });
+		});
     },
     // deviceready Event Handler
     //
