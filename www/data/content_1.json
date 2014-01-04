@@ -1,0 +1,10 @@
+ cbData(
+	 [ 
+	 	{ "ricetta_id" : 1,
+	      "titolo" : "Pane 1",
+	      "tag" : [ "pane", "favorito" ],
+	      "ingredienti" : ["PM: 150g", "Farina 0: 400g", "Acqua: 250g" ],
+	      "preparazione" : ""
+	    }
+	 ]
+ );

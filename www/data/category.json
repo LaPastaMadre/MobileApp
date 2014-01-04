@@ -1,17 +1,32 @@
  cbData(
-	 [ { "id" : 1,
+	 [ { "category_id" : 1,
 	        "name" : "Pane"
 	      },
-	      { "id" : 2,
+	      { "category_id" : 2,
 	        "name" : "Pizza"
 	      },
-	      { "id" : 3,
+	      { "category_id" : 2,
 	        "name" : "Dolci"
 	      },
-	      { "id" : 4,
+	      { "category_id" : 4,
+	        "name" : "Focaccie"
+	      },
+	      { "category_id" : 5,
 	        "name" : "Panificati Vari"
 	      },
-	      { "id" : 5,
+	      { "category_id" : 6,
+	        "name" : "Esuberi"
+	      },
+	      { "category_id" : 7,
+	        "name" : "Vegane"
+	      },
+	      { "category_id" : 8,
+	        "name" : "Gluten Free"
+	      },
+	      { "category_id" : 9,
+	        "name" : "Pasquali"
+	      },
+	      { "category_id" : 10,
 	        "name" : "Grandi Lievitati"
 	      }
 	 ]

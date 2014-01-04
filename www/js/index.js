@@ -36,42 +36,96 @@ var app = {
 	    		this.setAttribute("style","background-color: #EAE8F5");
 	    	});
 	    });
-	    $("#ricetteBtn").on("click", function() {        
-			    //$( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
-			        var $ul = $( "#autocomplete" ),
-			            //$input = $( data.input ),
-			            //value = $input.val(),
-			            html = "";
-			        $ul.html( "" );
-			        //if ( value && value.length > 2 ) {
-			            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-			            //$ul.listview( "refresh" );
-			            $.ajax({
-			                url: "data/category.json",
-			                dataType: "jsonp",
-			                jsonpCallback: 'cbData',
-			                crossDomain: true,
-			                /*data: {
-			                    //q: $input.val()
-			                }*/
-			            })
-			            .then( function ( response ) {
-			                $.each( response, function ( i, val ) {
-			                    html += "<li><a href='#'>" + val.name + "</a></li>";
-			                });
-			                $ul.html( html );
-			                $ul.listview( "refresh" );
-			                $ul.trigger( "updatelayout");
-			            });
-			        //}
-			    //});
+	    $("#ricetteBtn").on("click", function() {
+	    	app.loadcategories();	        
 		});
+    },
+    
+    loadcategories: function(){
+    	var strItemID = "#autocomplete";
+    	var $ul = $( strItemID),
+	            html = "";
+	        $ul.html( "" );
+            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+            //$ul.listview( "refresh" );
+            $.ajax({
+                url: "data/category.json",
+                dataType: "jsonp",
+                jsonpCallback: 'cbData',
+                crossDomain: true,
+                /*data: {
+                    //q: $input.val()
+                }*/
+            })
+            .then( function ( response ) {
+                $.each( response, function ( i, val ) {
+                    html += "<li><a href='javascript:app.loadcategory("+ val.category_id +")'>" + val.name + "</a></li>";
+                });
+                $ul.html( html );
+                $ul.listview( "refresh" );
+                $ul.trigger( "updatelayout");
+            });
+    },
+    
+    loadcategory: function(id){
+    	var strItemID = "#autocomplete";
+    	var $ul = $( strItemID),
+	            html = "";
+	        $ul.html( "" );
+	        $ul.html( "<li><a href='javascript:app.loadcategories();'>back</a></li>");
+	        $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+            //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+            //$ul.listview( "refresh" );
+            $.ajax({
+                url: "data/category_content_"+id+".json",
+                dataType: "jsonp",
+                jsonpCallback: 'cbData',
+                crossDomain: true,
+                /*data: {
+                    //q: $input.val()
+                }*/
+            })
+            .then( function ( response ) {
+            	html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
+                $.each( response, function ( i, val ) {
+                    html += "<li><a href='javascript:app.loadbody("+ val.ricetta_id +")'>" + val.titolo + "</a></li>";
+                });
+                $ul.html( html );
+                $ul.listview( "refresh" );
+                $ul.trigger( "updatelayout");
+            }, function(){});
+    },
+    
+    loadbody: function(id){
+    	$.ajax({
+                url: "data/content_"+id+".json",
+                dataType: "jsonp",
+                jsonpCallback: 'cbData',
+                crossDomain: true,
+                /*data: {
+                    //q: $input.val()
+                }*/
+            })
+            .then( function ( response ) {
+            	$.mobile.changePage("#bodyRicettaView");
+            	
+            }, function(){
+            	navigator.notification.alert(
+		            'Ricetta non trovata',  // message
+		            function(){},         // callback
+		            'Errore',            // title
+		            'Done'                  // buttonName
+		        );
+            });
+    	
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+    	
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event

@@ -6,3 +6,59 @@
 #exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+
+/* Smartphones (portrait and landscape) */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 44px 44px; }
+	#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 44px 44px;  }
+	#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	
+	h3 {
+	    font-size:24px;
+	    font-weight: bold;
+	    margin:0px;
+	    overflow:visible;
+	    padding:0px;
+	}
+	
+	h1 {
+	    font-size:24px;
+	    font-weight:normal;
+	    margin:0px;
+	    overflow:visible;
+	    padding:0px;
+	    text-align:center;
+	}
+}
+
+/* iPads (landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
