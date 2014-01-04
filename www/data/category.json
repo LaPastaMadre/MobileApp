@@ -1,0 +1,18 @@
+ cbData(
+	 [ { "id" : 1,
+	        "name" : "Pane"
+	      },
+	      { "id" : 2,
+	        "name" : "Pizza"
+	      },
+	      { "id" : 3,
+	        "name" : "Dolci"
+	      },
+	      { "id" : 4,
+	        "name" : "Panificati Vari"
+	      },
+	      { "id" : 5,
+	        "name" : "Grandi Lievitati"
+	      }
+	 ]
+ );

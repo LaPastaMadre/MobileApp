@@ -35,33 +35,36 @@ var app = {
         	$("div[data-role='page']").each(function(){
 	    		this.setAttribute("style","background-color: #EAE8F5");
 	    	});
-			    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
-			        var $ul = $( this ),
-			            $input = $( data.input ),
-			            value = $input.val(),
+	    });
+	    $("#ricetteBtn").on("click", function() {        
+			    //$( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
+			        var $ul = $( "#autocomplete" ),
+			            //$input = $( data.input ),
+			            //value = $input.val(),
 			            html = "";
 			        $ul.html( "" );
-			        if ( value && value.length > 2 ) {
+			        //if ( value && value.length > 2 ) {
 			            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-			            $ul.listview( "refresh" );
+			            //$ul.listview( "refresh" );
 			            $.ajax({
-			                url: "http://gd.geobytes.com/AutoCompleteCity",
+			                url: "data/category.json",
 			                dataType: "jsonp",
+			                jsonpCallback: 'cbData',
 			                crossDomain: true,
-			                data: {
-			                    q: $input.val()
-			                }
+			                /*data: {
+			                    //q: $input.val()
+			                }*/
 			            })
 			            .then( function ( response ) {
 			                $.each( response, function ( i, val ) {
-			                    html += "<li>" + val + "</li>";
+			                    html += "<li><a href='#'>" + val.name + "</a></li>";
 			                });
 			                $ul.html( html );
 			                $ul.listview( "refresh" );
 			                $ul.trigger( "updatelayout");
 			            });
-			        }
-			    });
+			        //}
+			    //});
 		});
     },
     // deviceready Event Handler

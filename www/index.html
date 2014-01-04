@@ -32,15 +32,13 @@
         <div data-role="page" id="homeView">
 		    <div data-theme="" data-role="header">
 		    	<h3>La Pasta Madre - Home</h3>
-		    	<a href="#aboutView" data-role="button" class="ui-btn-right">Info...</a>
-		    </div>
-		 
+		    	<a id="infoBtn" href="#aboutView" data-role="button" class="ui-btn-right" data-icon="custom">Info...</a>
+		    </div>		 
 		    <div data-role="content">
 		    	<center>
 		    		<img src="img/sfondo.png">
 		    	</center>
-		    </div>
-		 
+		    </div>		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
@@ -55,18 +53,12 @@
 		<div data-role="page" id="ricetteView">
 		    <div data-theme="" data-role="header">
 		        <h3>La Pasta Madre</h3>
-		    </div>
-		 
+		    </div>		 
 		    <div data-role="content">		        
-		        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
-				<li><a hred="#">Pane</a></li>
-				<li><a hred="#">Pizza</a></li>
-				<li><a hred="#">Torte</a></li>
-				<li><a hred="#">Panificati Vari</a></li>
-				<li><a hred="#">Grandi Lievitati</a></li>
-			</ul>
-		    </div>
-		 
+		        <ul id="autocomplete" data-role="listview"> 
+		        	<!-- data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">-->
+				</ul>
+		    </div>		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
@@ -81,15 +73,12 @@
 		<div data-role="page" id="toolsView">
 		    <div data-theme="" data-role="header">
 		        <h3>La Pasta Madre</h3>
-		    </div>
-		 
+		    </div>		 
 		    <div data-role="content">		        
 		        <ul id="autocomplete" data-role="listview">
 					<li><a hred="#">Convertitore Lievito</a></li>
 				</ul>
 			</div>
-			
-		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
@@ -99,6 +88,20 @@
 				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
 				    </ul>
 			    </div>		        
+		    </div>
+		</div>
+		<div data-role="page" id="aboutView">
+		    <div data-theme="" data-role="header">
+		    	<a id="backBtn" href="#homeView" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
+		        <h3>Informazioni su...</h3>
+		    </div>		 
+		    <div data-role="content">
+		        <h1><b><i>La Pasta Madre</i></b></h1><BR>
+		        <h1><b>Versione:</b> <i>0.1</i></h1><BR>
+		        <h1><b>Autore:</b> <i>Denis Ironi</i></h1><BR>
+		        <h1><b>Gruppo FB:</b> <a href="https://www.facebook.com/groups/lapastamadre/">La Pasta Madre</a></h1>
+			</div>
+		    <div data-theme="a" data-role="footer" data-position="fixed">		    			        
 		    </div>
 		</div>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
