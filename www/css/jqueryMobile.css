@@ -7,6 +7,15 @@
 #infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 
+#ingredienti ul
+{
+	text-align:center;
+}
+
+#ingredienti ul li
+{
+    list-style: none;
+}
 /* Smartphones (portrait and landscape) */
 @media only screen 
 and (min-device-width : 320px) 

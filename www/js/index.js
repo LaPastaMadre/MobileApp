@@ -16,7 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var domainUrl = "http://hexttrss.altervista.org";
 var app = {
+	
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -49,7 +52,7 @@ var app = {
             $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
             //$ul.listview( "refresh" );
             $.ajax({
-                url: "data/category.json",
+                url: domainUrl + "/serviceapp.php?method=getCategories",
                 dataType: "jsonp",
                 jsonpCallback: 'cbData',
                 crossDomain: true,
@@ -78,7 +81,7 @@ var app = {
             //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
             //$ul.listview( "refresh" );
             $.ajax({
-                url: "data/category_content_"+id+".json",
+                url: domainUrl + "/serviceapp.php?method=getCategoryItems&id=" + id,
                 dataType: "jsonp",
                 jsonpCallback: 'cbData',
                 crossDomain: true,
@@ -99,7 +102,7 @@ var app = {
     
     loadbody: function(id){
     	$.ajax({
-                url: "data/content_"+id+".json",
+                url: domainUrl + "/serviceapp.php?method=getBody&id=" + id,
                 dataType: "jsonp",
                 jsonpCallback: 'cbData',
                 crossDomain: true,
@@ -108,9 +111,27 @@ var app = {
                 }*/
             })
             .then( function ( response ) {
-            	$.mobile.changePage("#bodyRicettaView");
-            	
+            	var ricetta = response[0];
+            	$('#titoloRicetta').html(ricetta.titolo);
+            	var htmlingredienti = ricetta.ingredienti;
+            	/*$.each( ricetta.ingredienti, function ( i, val ) {
+                    htmlingredienti += "<li>" + val + "</li><br>";
+                });
+            	htmlingredienti += "</ul>";*/
+            	$('#ingredienti').html(htmlingredienti);
+            	$('#procedimento').html(ricetta.procedimento);
+            	if(ricetta.autore!=null && ricetta.autore!="")
+            		$('#autore').html("<b>Autore: </b>" + ricetta.autore);
+            	else
+            		$('#autore').hide();
+            		
+            	if(ricetta.link_fonte!=null && ricetta.link_fonte!="")
+            		$('#fonte').html("<a href=\"" + ricetta.link_fonte + "\"><b>Fonte</b></a>");
+            	else
+            		$('#fonte').hide();
+            	$.mobile.changePage("#bodyRicetteView");            	
             }, function(){
+            	alert('Ricetta non trovata');
             	navigator.notification.alert(
 		            'Ricetta non trovata',  // message
 		            function(){},         // callback
