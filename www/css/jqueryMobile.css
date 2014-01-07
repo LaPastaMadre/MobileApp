@@ -6,6 +6,7 @@
 #exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+#faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 
 #ingredienti ul
 {

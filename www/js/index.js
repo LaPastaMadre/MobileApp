@@ -67,6 +67,7 @@ var app = {
                 $ul.html( html );
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
+                $("#ricetteView #backBtn").hide();
             });
     },
     
@@ -75,7 +76,7 @@ var app = {
     	var $ul = $( strItemID),
 	            html = "";
 	        $ul.html( "" );
-	        $ul.html( "<li><a href='javascript:app.loadcategories();'>back</a></li>");
+	        //$ul.html( "<li><a href='javascript:app.loadcategories();'>back</a></li>");
 	        $ul.listview( "refresh" );
             $ul.trigger( "updatelayout");
             //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
@@ -90,13 +91,14 @@ var app = {
                 }*/
             })
             .then( function ( response ) {
-            	html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
+            	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
                 $.each( response, function ( i, val ) {
                     html += "<li><a href='javascript:app.loadbody("+ val.ricetta_id +")'>" + val.titolo + "</a></li>";
                 });
                 $ul.html( html );
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
+                $("#ricetteView #backBtn").show();
             }, function(){});
     },
     
@@ -115,7 +117,16 @@ var app = {
             	$('#titoloRicetta').html(ricetta.titolo);
             	var htmlingredienti = "";
             	$.each( ricetta.ingredienti, function ( i, val ) {
-                    htmlingredienti += "<li><b>" + val.nome_ingrediente + "</b>:" + val.quantita + " " + val.unita + " " + val.note + "</li><br>";
+            		var liStyle = "";
+            		var qty = ": " + val.quantita;
+            		var nome_ingr = val.nome_ingrediente;
+            		if(val.id_tipo_ingredienti == 22)
+            		{
+            			liStyle="list-style-type: none;";
+            			qty = "";
+            			nome_ingr = "";
+            		}
+                    htmlingredienti += "<li style=\"" + liStyle + "\"><b>" + nome_ingr + "</b>" + qty + " " + val.unita + " " + val.note + "</li><br>";
                 });
             	htmlingredienti += "</ul>";
             	$('#ingredienti').html(htmlingredienti);

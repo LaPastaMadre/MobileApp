@@ -43,6 +43,7 @@
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom" class="ui-btn-active">Home</a></li>
+						<li><a href="#faqView" id="faqBtn" data-icon="custom">F.A.Q.</a></li>
 				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom">Ricette</a></li>
 				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom">Tools</a></li>
 				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
@@ -53,16 +54,35 @@
 		<div data-role="page" id="ricetteView">
 		    <div data-theme="" data-role="header">
 		        <h3>La Pasta Madre</h3>
+		        <a id="backBtn" href="javascript:app.loadcategories();" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		    </div>		 
 		    <div data-role="content">		        
-		        <ul id="autocomplete" data-role="listview"> 
-		        	<!-- data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">-->
+		        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
 				</ul>
 		    </div>		 
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
+						<li><a href="#faqView" id="faqBtn" data-icon="custom">F.A.Q.</a></li>
+				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom" class="ui-btn-active">Ricette</a></li>
+				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom">Tools</a></li>
+				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
+				    </ul>
+			    </div>		        
+		    </div>
+		</div>
+		<div data-role="page" id="faqView">
+		    <div data-theme="" data-role="header">
+		        <h3>La Pasta Madre - F.A.Q.</h3>
+		    </div>		 
+		    <div data-role="content">
+		    </div>		 
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
+				    <ul>
+				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
+						<li><a href="#faqView" id="faqBtn" data-icon="custom">F.A.Q.</a></li>
 				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom" class="ui-btn-active">Ricette</a></li>
 				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom">Tools</a></li>
 				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
@@ -83,6 +103,7 @@
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
+						<li><a href="#faqView" id="faqBtn" data-icon="custom">F.A.Q.</a></li>
 				        <li><a href="#ricetteView" id="ricetteBtn" data-icon="custom">Ricette</a></li>
 				        <li><a href="#toolsView" id="toolsBtn" data-icon="custom" class="ui-btn-active">Tools</a></li>
 				        <li><a href="#" id="exitBtn" data-icon="custom">Exit</a></li>
