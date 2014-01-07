@@ -17,7 +17,7 @@
  * under the License.
  */
 
-var domainUrl = "http://hexttrss.altervista.org";
+var domainUrl = "http://lapastamadre.96.lt";
 var app = {
 	
     // Application Constructor
@@ -113,11 +113,11 @@ var app = {
             .then( function ( response ) {
             	var ricetta = response[0];
             	$('#titoloRicetta').html(ricetta.titolo);
-            	var htmlingredienti = ricetta.ingredienti;
-            	/*$.each( ricetta.ingredienti, function ( i, val ) {
-                    htmlingredienti += "<li>" + val + "</li><br>";
+            	var htmlingredienti = "";
+            	$.each( ricetta.ingredienti, function ( i, val ) {
+                    htmlingredienti += "<li><b>" + val.nome_ingrediente + "</b>:" + val.quantita + " " + val.unita + " " + val.note + "</li><br>";
                 });
-            	htmlingredienti += "</ul>";*/
+            	htmlingredienti += "</ul>";
             	$('#ingredienti').html(htmlingredienti);
             	$('#procedimento').html(ricetta.procedimento);
             	if(ricetta.autore!=null && ricetta.autore!="")
