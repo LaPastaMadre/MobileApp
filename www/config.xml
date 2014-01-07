@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.hexstudy.lapastamadremobile"
+        versionCode = "02" 
+        version     = "0.2.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>La Pasta Madre</name>
+
+    <description>
+        An example for phonegap build docs. 
+    </description>
+
+    <author href="http://lapastamadre.96.lt" email="denis.ironi@gmail.com">
+        Denis Ironi
+    </author>
+	<!--<gap:platform name="ios" />-->
+	<gap:platform name="android" />	
+	<gap:platform name="symbian" />
+	<gap:platform name="blackberry" />
+	<gap:platform name="winphone" />
+	<preference name="phonegap-version" value="2.9.0" />
+	<icon src="icon.png" />
+	<preference name="permissions" value="none"/>
+	<access origin="http://lapastamadre.96.lt" subdomains="true" />
+</widget>
