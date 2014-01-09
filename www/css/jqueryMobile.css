@@ -42,12 +42,14 @@ and (max-width : 320px) {
 and (min-device-width : 481px) 
 and (max-device-width : 720px) {
 /* Styles */
+	.nav-glyphish-example .ui-btn { padding-top: 60px !important; }
 	#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 44px 44px; }
 	#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 44px 44px;  }
 	#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 44px 44px; }
 	#exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 44px 44px; }
 	#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 44px 44px; }
 	#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 }
 
 /* large screens are at least 640dp x 480dp */
