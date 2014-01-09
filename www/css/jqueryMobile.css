@@ -36,6 +36,42 @@ and (max-width : 320px) {
 /* Styles */
 }
 
+/* Android Screens */
+/* xlarge screens are at least 960dp x 720dp */
+@media only screen
+and (min-device-width : 481px) 
+and (max-device-width : 720px) {
+/* Styles */
+	#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 44px 44px; }
+	#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 44px 44px;  }
+	#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+	#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 44px 44px; }
+}
+
+/* large screens are at least 640dp x 480dp */
+@media only screen
+and (min-device-width : 321px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* normal screens are at least 470dp x 320dp */
+@media only screen
+and (min-device-height : 427px)
+and (max-device-height : 470px)  
+and (max-device-width : 320px) {
+/* Styles */
+}
+
+/* small screens are at least 426dp x 320dp */
+@media only screen
+and (max-device-height : 426px)  
+and (max-device-width : 320px) {
+/* Styles */
+}
+
 /* iPads (portrait and landscape) */
 @media only screen 
 and (min-device-width : 768px) 
