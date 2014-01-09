@@ -37,12 +37,12 @@ and (max-width : 320px) {
 }
 
 /* Android Screens */
-/* xlarge screens are at least 960dp x 720dp */
+/* xlarge screens are at least 960dp x 720dp 
 @media only screen
 and (min-device-width : 481px) 
 and (max-device-width : 720px) {
-/* Styles */
 	.nav-glyphish-example .ui-btn { padding-top: 60px !important; }
+	.nav-glyphish-example .ui-btn:after { width: 50px!important; height: 50px!important; margin-left: -25px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
 	#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 44px 44px; }
 	#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 44px 44px;  }
 	#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 44px 44px; }
@@ -50,7 +50,7 @@ and (max-device-width : 720px) {
 	#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 44px 44px; }
 	#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 44px 44px; }
 	#faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
-}
+}*/
 
 /* large screens are at least 640dp x 480dp */
 @media only screen
