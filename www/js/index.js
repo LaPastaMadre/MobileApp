@@ -29,54 +29,112 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        $("#exitBtn").on("click", function() {
+        homePage.initialize();
+        faqPage.initialize();
+        ricettePage.initialize();
+        bodyRicettePage.initialize();
+        toolsPage.initialize();
+        aboutPage.initialize();        
+    },
+};
+
+var homePage = {
+	idRef: '#homeView',
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		
+		$(this.idRef + " #exitBtn").on("click", function() {
+        	navigator.app.exitApp();
+        });
+	},
+	
+	_pageshowEvent: function(event, ui){
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+};
+
+var ricettePage = {
+	idRef: '#ricetteView',
+	$titoloCategoriaRicette: null,
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		
+		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
         
-        $( document ).on( "pageinit", "#homeView", function() {
-        	$("div[data-role='page']").each(function(){
-	    		this.setAttribute("style","background-color: #EAE8F5");
-	    	});
-	    });
-	    $("#ricetteBtn").on("click", function() {
-	    	app.loadcategories();	        
+        ricettePage.$titoloCategoriaRicette = $('#titoloCategoriaRicette');
+        var ricettalistID = "#ricetteList";		
+		$( ricettalistID).hide();    	
+		$('form.ui-filterable').hide();
+	},
+	
+	_pageshowEvent: function(event, ui){
+		ricettePage.loadcategories();
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+	
+	loadcategories: function(){
+    	$.mobile.loading( 'show', {
+			text: 'Caricamento categorie...',
+			textVisible: true,
+			//theme: 'z',
+			html: ""
 		});
-    },
-    
-    loadcategories: function(){
-    	var strItemID = "#autocomplete";
-    	var $ul = $( strItemID),
-	            html = "";
-	        $ul.html( "" );
-            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-            //$ul.listview( "refresh" );
-            $.ajax({
-                url: domainUrl + "/serviceapp.php?method=getCategories",
-                dataType: "jsonp",
-                jsonpCallback: 'cbData',
-                crossDomain: true,
-                /*data: {
-                    //q: $input.val()
-                }*/
-            })
-            .then( function ( response ) {
-                $.each( response, function ( i, val ) {
-                    html += "<li><a href='javascript:app.loadcategory("+ val.category_id +")'>" + val.name + "</a></li>";
-                });
-                $ul.html( html );
-                $ul.listview( "refresh" );
-                $ul.trigger( "updatelayout");
-                $("#ricetteView #backBtn").hide();
+		
+		var categoryListID = "#categoryList";
+		$( categoryListID).show();
+		var ricettalistID = "#ricetteList";		
+		$( ricettalistID).hide();    	
+		$('form.ui-filterable').hide();
+    	var $ul = $( categoryListID), html = "";	        
+        $ul.html( "" );
+        //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+        //$ul.listview( "refresh" );
+        $.ajax({
+            url: domainUrl + "/serviceapp.php?method=getCategories",
+            dataType: "jsonp",
+            jsonpCallback: 'callbackGetCategories',
+            crossDomain: true,
+            /*data: {
+                //q: $input.val()
+            }*/
+        })
+        .then( function ( response ) {
+            $.each( response, function ( i, val ) {
+                html += "<li><a href='javascript:ricettePage.loadcategory("+ val.category_id +", \""+ val.name + "\")'>" + val.name + "</a></li>";
             });
+            $ul.html( html );
+            ricettePage.$titoloCategoriaRicette.text('Categorie Ricette');
+            $.mobile.loading( 'hide' );
+            $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+            $("#ricetteView #backBtn").hide();
+        });
     },
-    
-    loadcategory: function(id){
-    	var strItemID = "#autocomplete";
-    	var $ul = $( strItemID),
+        
+    loadcategory: function(id, name){
+    	$.mobile.loading( 'show', {
+			text: 'Caricamento categoria ' + name + '...',
+			textVisible: true,
+			//theme: 'z',
+			html: ""
+		});
+		var categoryListID = "#categoryList";
+		$( categoryListID).hide();
+    	var ricettalistID = "#ricetteList";
+    	$( ricettalistID).show();
+		$('form.ui-filterable').show();
+    	var $ul = $( ricettalistID),
 	            html = "";
 	        $ul.html( "" );
+	        $ul.attr('data-filter', 'true');
+	        
+	        //data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a"
 	        //$ul.html( "<li><a href='javascript:app.loadcategories();'>back</a></li>");
+	        $ul.show();
 	        $ul.listview( "refresh" );
             $ul.trigger( "updatelayout");
             //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
@@ -84,7 +142,7 @@ var app = {
             $.ajax({
                 url: domainUrl + "/serviceapp.php?method=getCategoryItems&id=" + id,
                 dataType: "jsonp",
-                jsonpCallback: 'cbData',
+                jsonpCallback: 'callbackGetCategoryItems',
                 crossDomain: true,
                 /*data: {
                     //q: $input.val()
@@ -93,16 +151,39 @@ var app = {
             .then( function ( response ) {
             	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
                 $.each( response, function ( i, val ) {
-                    html += "<li><a href='javascript:app.loadbody("+ val.ricetta_id +")'>" + val.titolo + "</a></li>";
+                    html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id +")'>" + val.titolo + "</a></li>";
                 });
                 $ul.html( html );
+                $.mobile.loading( 'hide' );
+                ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
                 $("#ricetteView #backBtn").show();
             }, function(){});
     },
-    
-    loadbody: function(id){
+};
+
+var bodyRicettePage = {
+	idRef: '#bodyRicetteView',
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		$(this.idRef + " #exitBtn").on("click", function() {
+        	navigator.app.exitApp();
+        });
+	},
+	
+	_pageshowEvent: function(event, ui){
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+	
+	loadbody: function(id){
+    	$.mobile.loading( 'show', {
+			text: 'Caricamento ricetta...',
+			textVisible: true,
+			//theme: 'z',
+			html: ""
+		});
     	$.ajax({
                 url: domainUrl + "/serviceapp.php?method=getBody&id=" + id,
                 dataType: "jsonp",
@@ -140,6 +221,8 @@ var app = {
             		$('#fonte').html("<a href=\"" + ricetta.link_fonte + "\"><b>Fonte</b></a>");
             	else
             		$('#fonte').hide();
+            	
+            	$.mobile.loading( 'hide' );
             	$.mobile.changePage("#bodyRicetteView");            	
             }, function(){
             	alert('Ricetta non trovata');
@@ -152,25 +235,47 @@ var app = {
             });
     	
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-    	
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-    	/*
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+};
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-        */
-    }
+var toolsPage = {
+	idRef: '#toolsView',
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		$(this.idRef + " #exitBtn").on("click", function() {
+        	navigator.app.exitApp();
+        });
+	},
+	
+	_pageshowEvent: function(event, ui){
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+};
+
+var faqPage = {
+	idRef: '#faqView',
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		$(this.idRef + " #exitBtn").on("click", function() {
+        	navigator.app.exitApp();
+        });
+	},
+	
+	_pageshowEvent: function(event, ui){
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+};
+
+var aboutPage = {
+	idRef: '#aboutView',
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+	},
+	
+	_pageshowEvent: function(event, ui){
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
 };

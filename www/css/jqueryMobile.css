@@ -17,6 +17,14 @@
 {
     list-style: none;
 }
+
+#procedimento
+{
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+
 /* Smartphones (portrait and landscape) */
 @media only screen 
 and (min-device-width : 320px) 

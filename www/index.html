@@ -32,7 +32,7 @@
     </head>
     <body>
         <div data-role="page" id="homeView" data-theme="b">
-		    <div data-theme="" data-role="header">
+		    <div data-role="header" data-theme="b">
 		    	<h3>La Pasta Madre - Home</h3>
 		    	<a id="infoBtn" href="#aboutView" data-role="button" class="ui-btn-right" data-icon="custom">Info...</a>
 		    </div>		 
@@ -41,7 +41,7 @@
 		    		<img src="img/sfondo.png">
 		    	</center>
 		    </div>		 
-		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    <div data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom" class="ui-btn-active">Home</a></li>
@@ -56,13 +56,16 @@
 		<div data-role="page" id="ricetteView" data-theme="b">
 		    <div data-theme="" data-role="header">
 		        <h3>La Pasta Madre</h3>
-		        <a id="backBtn" href="javascript:app.loadcategories();" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
+		        <a id="backBtn" href="javascript:ricettePage.loadcategories();" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		    </div>		 
-		    <div data-role="content">		        
-		        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
+		    <div data-role="content">
+		    	<h1 id="titoloCategoriaRicette">Categorie Ricette</h1>		        
+		        <ul id="categoryList" data-role="listview" data-inset="true">
+				</ul>
+				<ul id="ricetteList" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
 				</ul>
 		    </div>		 
-		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    <div data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
@@ -80,7 +83,7 @@
 		    </div>		 
 		    <div data-role="content">
 		    </div>		 
-		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    <div data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
@@ -96,12 +99,13 @@
 		    <div data-theme="" data-role="header">
 		        <h3>La Pasta Madre</h3>
 		    </div>		 
-		    <div data-role="content">		        
-		        <ul id="autocomplete" data-role="listview">
+		    <div data-role="content">
+		    	<h1>Strumenti</h1>		        
+		        <ul id="toolsList" data-role="listview" data-inset="true">
 					<li><a hred="#">Convertitore Lievito</a></li>
 				</ul>
 			</div>
-		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    <div data-role="footer" data-position="fixed">
 		    	<div data-role="navbar" class="nav-glyphish-example" data-role="footer">
 				    <ul>
 				        <li><a href="#homeView" id="homeBtn" data-icon="custom">Home</a></li>
@@ -120,11 +124,11 @@
 		    </div>		 
 		    <div data-role="content">
 		    	<h1>Ingredienti</h1>
-		        <p id='ingredienti'></p>
+		        <center><p id='ingredienti'></p></center>
 		        <h1>Procedimento</h1>
 		        <p id='procedimento'></p>
 			</div>
-		    <div data-theme="a" data-role="footer" data-position="fixed">
+		    <div data-role="footer" data-position="fixed">
 		    	<h1 id="autore"></h1>
 		    	<h1 id="fonte"></h1>		    			        
 		    </div>
@@ -140,7 +144,7 @@
 		        <h1><b>Autore:</b> <i>Denis Ironi</i></h1><BR>
 		        <h1><b>Gruppo FB:</b> <a href="https://www.facebook.com/groups/lapastamadre/">La Pasta Madre</a></h1>
 			</div>
-		    <div data-theme="a" data-role="footer" data-position="fixed">		    	
+		    <div data-role="footer" data-position="fixed">		    	
 		    </div>
 		</div>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
