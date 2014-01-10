@@ -190,7 +190,7 @@ var bodyRicettePage = {
         });
         
         $( this.idRef ).on( "swipeleft", function(){
-        	if(bodyRicettePage.indexContent == bodyRicettePage.$arrayContent.length - 1)
+        	if(bodyRicettePage.indexContent < bodyRicettePage.$arrayContent.length - 1)
         	{
         		bodyRicettePage.indexContent++;
         		bodyRicettePage.switchContent();
