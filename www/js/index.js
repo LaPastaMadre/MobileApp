@@ -57,6 +57,7 @@ var homePage = {
 var ricettePage = {
 	idRef: '#ricetteView',
 	$titoloCategoriaRicette: null,
+	bLoadCategories: true,
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
@@ -72,47 +73,54 @@ var ricettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		ricettePage.loadcategories();
+		if(ricettePage.bLoadCategories){
+			ricettePage.loadcategories();			
+		}
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
 	
 	loadcategories: function(){
-    	$.mobile.loading( 'show', {
-			text: 'Caricamento categorie...',
-			textVisible: true,
-			//theme: 'z',
-			html: ""
-		});
+    	
 		
 		var categoryListID = "#categoryList";
 		$( categoryListID).show();
 		var ricettalistID = "#ricetteList";		
 		$( ricettalistID).hide();    	
 		$('form.ui-filterable').hide();
-    	var $ul = $( categoryListID), html = "";	        
-        $ul.html( "" );
-        //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        //$ul.listview( "refresh" );
-        $.ajax({
-            url: domainUrl + "/serviceapp.php?method=getCategories",
-            dataType: "jsonp",
-            jsonpCallback: 'callbackGetCategories',
-            crossDomain: true,
-            /*data: {
-                //q: $input.val()
-            }*/
-        })
-        .then( function ( response ) {
-            $.each( response, function ( i, val ) {
-                html += "<li><a href='javascript:ricettePage.loadcategory("+ val.category_id +", \""+ val.name + "\")'>" + val.name + "</a></li>";
-            });
-            $ul.html( html );
-            ricettePage.$titoloCategoriaRicette.text('Categorie Ricette');
-            $.mobile.loading( 'hide' );
-            $ul.listview( "refresh" );
-            $ul.trigger( "updatelayout");
-            $("#ricetteView #backBtn").hide();
-        });
+    	var $ul = $( categoryListID), html = "";
+    	ricettePage.$titoloCategoriaRicette.text('Categorie Ricette');
+    	if($ul.html().trim()=="")
+    	{
+    		$.mobile.loading( 'show', {
+				text: 'Caricamento categorie...',
+				textVisible: true,
+				//theme: 'z',
+				html: ""
+			});	        
+	        $ul.html( "" );
+	        //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+	        //$ul.listview( "refresh" );
+	        $.ajax({
+	            url: domainUrl + "/serviceapp.php?method=getCategories",
+	            dataType: "jsonp",
+	            jsonpCallback: 'callbackGetCategories',
+	            crossDomain: true,
+	            /*data: {
+	                //q: $input.val()
+	            }*/
+	        })
+	        .then( function ( response ) {
+	            $.each( response, function ( i, val ) {
+	                html += "<li><a href='javascript:ricettePage.loadcategory("+ val.category_id +", \""+ val.name + "\")'>" + val.name + "</a></li>";
+	            });
+	            $ul.html( html );
+	            $.mobile.loading( 'hide' );
+	            $ul.listview( "refresh" );
+	            $ul.trigger( "updatelayout");
+	            $("#ricetteView #backBtn").hide();
+	            ricettePage.bLoadCategories = false;
+	        });
+        }
     },
         
     loadcategory: function(id, name){
@@ -151,7 +159,7 @@ var ricettePage = {
             .then( function ( response ) {
             	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
                 $.each( response, function ( i, val ) {
-                    html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id +")'>" + val.titolo + "</a></li>";
+                    html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'>" + val.titolo + "</a></li>";
                 });
                 $ul.html( html );
                 $.mobile.loading( 'hide' );
@@ -165,19 +173,54 @@ var ricettePage = {
 
 var bodyRicettePage = {
 	idRef: '#bodyRicetteView',
+	id_categoria: null,
+	name_categoria: null,
+	indexContent: 0,
+	$arrayContent: null,
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
+        
+        $(this.idRef + " #backBtn").on("click", function() {        	
+        	ricettePage.loadcategory(bodyRicettePage.id_categoria, bodyRicettePage.name_categoria);
+        	$.mobile.changePage("#ricetteView");
+        });
+        
+        $( this.idRef ).on( "swipeleft", function(){
+        	if(bodyRicettePage.indexContent == bodyRicettePage.$arrayContent.length - 1)
+        	{
+        		bodyRicettePage.indexContent++;
+        		bodyRicettePage.switchContent();
+        	}
+        } );
+        
+        $( this.idRef ).on( "swiperight", function(){
+        	if(bodyRicettePage.indexContent>0)
+        	{
+	        	bodyRicettePage.indexContent--;
+	        	bodyRicettePage.switchContent();
+        	}
+        } );
+                
+		this.$arrayContent = $(bodyRicettePage.idRef + ' div[data-role="content"]');
 	},
 	
 	_pageshowEvent: function(event, ui){
-		  //alert( 'This page was just hidden: '+ ui.prevPage);
+		bodyRicettePage.indexContent = 0;
+		bodyRicettePage.switchContent();
+	},
+	
+	switchContent: function(){
+		bodyRicettePage.$arrayContent.hide();
+		$(bodyRicettePage.$arrayContent[bodyRicettePage.indexContent]).show();
 	},
 	
 	loadbody: function(id){
+		bodyRicettePage.id_categoria = null;
+		bodyRicettePage.name_categoria = null;
     	$.mobile.loading( 'show', {
 			text: 'Caricamento ricetta...',
 			textVisible: true,
@@ -193,8 +236,10 @@ var bodyRicettePage = {
                     //q: $input.val()
                 }*/
             })
-            .then( function ( response ) {
+            .then( function ( response ) {            	
             	var ricetta = response[0];
+            	bodyRicettePage.id_categoria = ricetta.id_categoria;
+            	bodyRicettePage.name_categoria = ricetta.categoria_name;
             	$('#titoloRicetta').html(ricetta.titolo);
             	var htmlingredienti = "";
             	$.each( ricetta.ingredienti, function ( i, val ) {

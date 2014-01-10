@@ -1,28 +1,4 @@
-.nav-glyphish-example .ui-btn { padding-top: 40px !important; }
-.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
-#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 22px 22px; }
-#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 22px 22px;  }
-#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 22px 22px; }
-#exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 22px 22px; }
-#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
-#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }
-#faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 
-#ingredienti ul
-{
-	text-align:center;
-}
-
-#ingredienti ul li
-{
-    list-style: none;
-}
-
-#procedimento p span
-{
-	font-size: 12px;
-	color: #FFFFFF;
-}
 
 
 /* Smartphones (portrait and landscape) */

@@ -25,15 +25,15 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />        
-        <link rel="stylesheet" type="text/css" href="css/jqueryMobile.css" />
-        <!--<link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 481px) and (max-device-width : 720px)" href="css/jqueryMobile.xlarge.css" />
+       <!-- <link rel="stylesheet" type="text/css" href="css/jqueryMobile.css" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 481px) and (max-device-width : 720px)" href="css/jqueryMobile.xlarge.css" />
         -->
         <title>La Pasta Madre</title>
     </head>
     <body>
         <div data-role="page" id="homeView" data-theme="b">
-		    <div data-role="header" data-theme="b">
-		    	<h3>La Pasta Madre - Home</h3>
+		    <div data-role="header" >
+		    	<h4>La Pasta Madre - Home</h4>
 		    	<a id="infoBtn" href="#aboutView" data-role="button" class="ui-btn-right" data-icon="custom">Info...</a>
 		    </div>		 
 		    <div data-role="content">
@@ -119,12 +119,18 @@
 		</div>
 		<div data-role="page" id="bodyRicetteView" data-theme="b">
 		    <div data-role="header">
-		    	<a id="backBtn" href="#ricetteView" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
+		    	<a id="backBtn" href="#" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		        <h3 id='titoloRicetta'></h3>
 		    </div>		 
-		    <div data-role="content" data-theme="d">
+		    <div id="contentIngredienti" data-role="content" data-theme="d">
 		    	<h1>Ingredienti</h1>
 		        <center><p id='ingredienti'></p></center>
+		        <!--<h1>Procedimento</h1>
+		        <p id='procedimento'></p>-->
+			</div>
+			<div id="contentProcedimento" data-role="content" data-theme="d">
+		    	<!--<h1>Ingredienti</h1>
+		        <center><p id='ingredienti'></p></center>-->
 		        <h1>Procedimento</h1>
 		        <p id='procedimento'></p>
 			</div>
