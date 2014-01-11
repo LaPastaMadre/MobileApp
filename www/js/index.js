@@ -34,23 +34,10 @@ var app = {
         ricettePage.initialize();
         bodyRicettePage.initialize();
         toolsPage.initialize();
-        aboutPage.initialize();        
-        /*
-        $( document ).on( "pagecreate", "#homeView", function() {
-		    $( document ).on( "swipeleft swiperight", "#homeView", function( e ) {
-		        // We check if there is no open panel on the page because otherwise
-		        // a swipe to close the left panel would also open the right panel (and v.v.).
-		        // We do this by checking the data that the framework stores on the page element (panel: open).
-		        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
-		            if ( e.type === "swipeleft" ) {
-		                $( "#menupanel" ).panel( "close" );
-		            } else if ( e.type === "swiperight" ) {
-		                $( "#menupanel" ).panel( "open" );
-		            }
-		        }
-		    });
-		});*/
+        aboutPage.initialize();
     },
+    
+    
 };
 
 var homePage = {
@@ -63,16 +50,20 @@ var homePage = {
         	navigator.app.exitApp();
         });
         
+        $(this.idRef + " #menuBtn").on("click", function() {
+        	$(homePage.idRef +" #menupanel").panel( "open");
+        });
+        
 	    $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
-			$("#menupanel").panel( "open");
+			$(homePage.idRef +" #menupanel").panel( "open");
 		});
 		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
-			$("#menupanel").panel( "close");
+			$(homePage.idRef +" #menupanel").panel( "close");
 		});
 	},
 	
-	_pageshowEvent: function(event, ui){
-		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	_pageshowEvent: function(event, ui){		
+		$('#sizeWindow').html("Heigth: " + $(window).height() + " Width: "+ $(window).width());
 	},
 };
 
@@ -87,6 +78,17 @@ var ricettePage = {
 		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
+        
+        $(this.idRef + " #menuBtn").on("click", function() {
+        	$(ricettePage.idRef +" #menupanel").panel( "open");
+        });
+        
+        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+			$(ricettePage.idRef +" #menupanel").panel( "open");
+		});
+		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
+			$(ricettePage.idRef +" #menupanel").panel( "close");
+		});
         
         ricettePage.$titoloCategoriaRicette = $('#titoloCategoriaRicette');
         var ricettalistID = "#ricetteList";		
@@ -313,6 +315,17 @@ var toolsPage = {
 		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
+        
+        $(this.idRef + " #menuBtn").on("click", function() {
+        	$(toolsPage.idRef +" #menupanel").panel( "open");
+        });
+        
+        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+			$(toolsPage.idRef +" #menupanel").panel( "open");
+		});
+		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
+			$(toolsPage.idRef +" #menupanel").panel( "close");
+		});
 	},
 	
 	_pageshowEvent: function(event, ui){
@@ -328,6 +341,17 @@ var faqPage = {
 		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
+        
+        $(this.idRef + " #menuBtn").on("click", function() {
+        	$(faqPage.idRef +" #menupanel").panel( "open");
+        });
+        
+        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+			$(faqPage.idRef +" #menupanel").panel( "open");
+		});
+		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
+			$(faqPage.idRef +" #menupanel").panel( "close");
+		});
 	},
 	
 	_pageshowEvent: function(event, ui){
