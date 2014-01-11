@@ -35,6 +35,21 @@ var app = {
         bodyRicettePage.initialize();
         toolsPage.initialize();
         aboutPage.initialize();        
+        /*
+        $( document ).on( "pagecreate", "#homeView", function() {
+		    $( document ).on( "swipeleft swiperight", "#homeView", function( e ) {
+		        // We check if there is no open panel on the page because otherwise
+		        // a swipe to close the left panel would also open the right panel (and v.v.).
+		        // We do this by checking the data that the framework stores on the page element (panel: open).
+		        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+		            if ( e.type === "swipeleft" ) {
+		                $( "#menupanel" ).panel( "close" );
+		            } else if ( e.type === "swiperight" ) {
+		                $( "#menupanel" ).panel( "open" );
+		            }
+		        }
+		    });
+		});*/
     },
 };
 
@@ -47,6 +62,13 @@ var homePage = {
 		$(this.idRef + " #exitBtn").on("click", function() {
         	navigator.app.exitApp();
         });
+        
+	    $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+			$("#menupanel").panel( "open");
+		});
+		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
+			$("#menupanel").panel( "close");
+		});
 	},
 	
 	_pageshowEvent: function(event, ui){

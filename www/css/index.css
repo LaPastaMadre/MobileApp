@@ -62,8 +62,8 @@ body {
     background:url(../img/sfondo.png) no-repeat center top; /* 505px x 644px */
 }
 
-.nav-glyphish-example .ui-btn { padding-top: 40px !important; }
-.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+/*.nav-glyphish-example .ui-btn { padding-left: 0px !important;}*/
+.nav-glyphish-example .ui-btn:after { padding-left: 40px; /*width: 30px!important; height: 30px!important;*/ margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
 #homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 22px 22px; }
 #ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 22px 22px;  }
 #toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 22px 22px; }
@@ -77,20 +77,60 @@ body {
 	text-align:center;
 }
 
-#ingredienti ul li
+#ingredienti li
 {
+	font-size: 25px;
     list-style: none;
 }
 
 #procedimento p span
 {
-	font-size: 25px;
+	font-size: 30px!important;
 	color: #FFFFFF;
 }
+
+.ui-panel-inner {
+    padding:0px; /*make the buttons flush edge to edge*/
+}
+.ui-controlgroup {
+    margin:0; /*make the buttons flush to the top*/
+}
+
+.ui-header {
+    height:45px;
+}
+
+.bars-button {
+    margin:7px;
+}
+
+/* Swipe works with mouse as well but often causes text selection. */
+#homeView * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+/* Content styling. */
+dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+.back-btn { float: right; margin: 0 2em 1em 0; }
 
 h1 {
     font-size:24px;
     font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+h4 {
+    font-size:60px;
+    font-weight:bold;
     margin:0px;
     overflow:visible;
     padding:0px;
