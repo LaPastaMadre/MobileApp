@@ -68,7 +68,7 @@
 		    	<h1 id="titoloCategoriaRicette">Categorie Ricette</h1>		        
 		        <ul id="categoryList" data-role="listview" data-inset="true">
 				</ul>
-				<ul id="ricetteList" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
+				<ul id="ricetteList" data-autodividers="true" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
 				</ul>
 		    </div>		 
 		    <div data-role="footer" data-position="fixed">
@@ -148,7 +148,27 @@
 		        <h1>Procedimento</h1>
 		        <p id='procedimento'></p>
 			</div>
+			<div id="contentFoto" data-role="content" data-theme="d" style="display: none;">
+		    	<!--<h1>Ingredienti</h1>
+		        <center><p id='ingredienti'></p></center>-->
+		        <h1>Foto</h1>
+		        <p id='foto'></p>
+			</div>
+			<div id="contentVideo" data-role="content" data-theme="d" style="display: none;">
+		    	<!--<h1>Ingredienti</h1>
+		        <center><p id='ingredienti'></p></center>-->
+		        <h1>Video</h1>
+		        <p id='video'></p>
+			</div>
 		    <div data-role="footer" data-position="fixed">
+		    	<div data-role="navbar">
+				    <ul>
+				        <li><a href="#" class="ui-btn-active ui-state-persist">Ingredienti</a></li>
+				        <li><a href="#">Procedimento</a></li>
+				        <li><a href="#">Foto</a></li>
+				        <li><a href="#">Video</a></li>
+				    </ul>
+				</div><!-- /navbar -->
 		    	<h1 id="autore"></h1>
 		    	<h1 id="fonte"></h1>		    			        
 		    </div>

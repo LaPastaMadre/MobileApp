@@ -195,6 +195,7 @@ var bodyRicettePage = {
 	name_categoria: null,
 	indexContent: 0,
 	$arrayContent: null,
+	$arrayNavBar: null,
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
@@ -224,6 +225,11 @@ var bodyRicettePage = {
         } );
                 
 		this.$arrayContent = $(bodyRicettePage.idRef + ' div[data-role="content"]');
+		this.$arrayNavBar = $(bodyRicettePage.idRef + ' div[data-role="navbar"] a');
+		this.$arrayNavBar.on("click", function(){			
+			var index = jQuery.inArray( this ,bodyRicettePage.$arrayNavBar);
+			bodyRicettePage.goToContent(index);
+		});
 	},
 	
 	_pageshowEvent: function(event, ui){
@@ -231,9 +237,19 @@ var bodyRicettePage = {
 		bodyRicettePage.switchContent();
 	},
 	
+	goToContent:function(newIndex)
+	{
+		bodyRicettePage.indexContent= newIndex;
+	    bodyRicettePage.switchContent();
+	},
+	
 	switchContent: function(){
 		bodyRicettePage.$arrayContent.hide();
+		bodyRicettePage.$arrayNavBar.removeClass('ui-btn-active');
+		bodyRicettePage.$arrayNavBar.removeClass('ui-state-persist');
 		$(bodyRicettePage.$arrayContent[bodyRicettePage.indexContent]).show();
+		$(bodyRicettePage.$arrayNavBar[bodyRicettePage.indexContent]).addClass('ui-btn-active');
+		$(bodyRicettePage.$arrayNavBar[bodyRicettePage.indexContent]).addClass('ui-state-persist');
 	},
 	
 	loadbody: function(id){
