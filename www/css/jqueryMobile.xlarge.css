@@ -1,8 +1,7 @@
 /* Android Screens */
 /* xlarge screens are at least 960dp x 720dp */
 @media only screen
-and (min-device-height : 1230px) 
-or (min-device-width : 1280px) {
+and (min-device-height : 1230px) {
 /* Styles */
 	.ui-header { height: 100px !important; font-size: large; }
 	.ui-footer { height: 100px !important; font-size: large; }
