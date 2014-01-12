@@ -54,11 +54,8 @@ var homePage = {
         	$(homePage.idRef +" #menupanel").panel( "open");
         });
         
-	    $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+	    $(this.idRef).on("swiperight",function(){
 			$(homePage.idRef +" #menupanel").panel( "open");
-		});
-		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
-			$(homePage.idRef +" #menupanel").panel( "close");
 		});
 	},
 	
@@ -83,13 +80,10 @@ var ricettePage = {
         	$(ricettePage.idRef +" #menupanel").panel( "open");
         });
         
-        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+        $(this.idRef).on("swiperight",function(){
 			$(ricettePage.idRef +" #menupanel").panel( "open");
 		});
-		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
-			$(ricettePage.idRef +" #menupanel").panel( "close");
-		});
-        
+		
         ricettePage.$titoloCategoriaRicette = $('#titoloCategoriaRicette');
         var ricettalistID = "#ricetteList";		
 		$( ricettalistID).hide();    	
@@ -320,11 +314,8 @@ var toolsPage = {
         	$(toolsPage.idRef +" #menupanel").panel( "open");
         });
         
-        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+        $(this.idRef).on("swiperight",function(){
 			$(toolsPage.idRef +" #menupanel").panel( "open");
-		});
-		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
-			$(toolsPage.idRef +" #menupanel").panel( "close");
 		});
 	},
 	
@@ -346,11 +337,8 @@ var faqPage = {
         	$(faqPage.idRef +" #menupanel").panel( "open");
         });
         
-        $(this.idRef + " div[data-role=\"content\"]").on("swiperight",function(){
+        $(this.idRef).on("swiperight",function(){
 			$(faqPage.idRef +" #menupanel").panel( "open");
-		});
-		$(this.idRef + " div[data-role=\"content\"]").on("swipeleft",function(){
-			$(faqPage.idRef +" #menupanel").panel( "close");
 		});
 	},
 	
