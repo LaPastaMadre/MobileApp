@@ -1,11 +1,12 @@
 /* Android Screens */
 /* xlarge screens are at least 960dp x 720dp */
 @media only screen
-and (min-device-width : 481px) 
-and (max-device-width : 720px) {
+and (min-device-height : 1280px) 
+or (min-device-width : 1280px) {
 /* Styles */
-	.ui-header { height: 45px !important; font-size: large; }
-	.ui-btn { padding-top: 60px !important; }	
+	.ui-header { height: 100px !important; font-size: large; }
+	.ui-footer { height: 100px !important; font-size: large; }
+	.ui-btn { height: 100px !important; padding-top: 60px !important; }	
 	.ui-btn:after { width: 50px!important; height: 50px!important; margin-left: -25px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
 	#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 44px 44px; }
 	#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 44px 44px;  }
