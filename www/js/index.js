@@ -99,7 +99,7 @@ var ricettePage = {
 	
 	loadcategories: function(){
     	
-		
+		$("#ricetteView #backBtn").hide();
 		var categoryListID = "#categoryList";
 		$( categoryListID).show();
 		var ricettalistID = "#ricetteList";		
@@ -301,6 +301,8 @@ var bodyRicettePage = {
             	else
             		$('#fonte').hide();
             	
+            	var options = {};
+				$("#Gallery a", $(bodyRicettePage.idRef)[0]).photoSwipe(options, bodyRicettePage.idRef);
             	$.mobile.loading( 'hide' );
             	$.mobile.changePage("#bodyRicetteView");            	
             }, function(){

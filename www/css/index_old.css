@@ -1,0 +1,184 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#EAE8F5;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+.view {
+	position:absolute;             /* position in the center of the screen */
+    /*left:50%;
+    top:50%;*/
+    /*height:760px;                   /* text area height */
+    /*width:480px;                   /* text area width */
+    text-align:center;
+    padding:10px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    /*margin:-115px 0px 0px -112px; */ /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+    
+}
+/* Portrait layout (default) */
+.logo {
+    background:url(../img/sfondo.png) no-repeat center top; /* 505px x 644px */
+}
+
+/*.nav-glyphish-example .ui-btn { padding-left: 0px !important;}*/
+.nav-glyphish-example .ui-btn:after { padding-left: 40px; /*width: 30px!important; height: 30px!important;*/ margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+#homeBtn:after { background:  url(../img/house.png) 50% 50% no-repeat; background-size: 22px 22px; }
+#ricetteBtn:after { background:  url(../img/ricette.png) 50% 50% no-repeat; background-size: 22px 22px;  }
+#toolsBtn:after { background:  url(../img/toolbox.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+#exitBtn:after { background:  url(../img/exit.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+#infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+#backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+#faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
+
+#ingredienti ul
+{
+	text-align:center;
+}
+
+#ingredienti li
+{
+	font-size: 25px;
+    list-style: none;
+}
+
+#procedimento p span
+{
+	font-size: 30px!important;
+	color: #FFFFFF;
+}
+
+.ui-panel-inner {
+    padding:0px; /*make the buttons flush edge to edge*/
+}
+.ui-controlgroup {
+    margin:0; /*make the buttons flush to the top*/
+}
+
+.ui-header {
+    height:45px;
+}
+
+.bars-button {
+    margin:7px;
+}
+
+/* Swipe works with mouse as well but often causes text selection. */
+#homeView * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* Content styling. */
+dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+.back-btn { float: right; margin: 0 2em 1em 0; }
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+h4 {
+    font-size:60px;
+    font-weight:bold;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.ui-panel {
+	width: 350px !important;
+}
+
+.ui-panel.ui-panel-position-left {
+	width:  350px !important;
+}
+
+.ui-panel.ui-panel-closed {
+	width: 0;
+}
+
+.ui-panel-position-left {
+	/*left: 50px !important;*/
+}
+
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+	-webkit-transform: translate3d(350px, 0, 0) !important;
+	-moz-transform: translate3d(350px, 0, 0) !important;
+	transform: translate3d(350px, 0, 0) !important;
+}
+
+.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open, .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+	left: 350px !important;
+	right: 350px !important;
+}
+
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+	-webkit-transform: translate3d(350px, 0, 0) !important;
+	-moz-transform: translate3d(350px, 0, 0) !important;
+	transform: translate3d(350px, 0, 0) !important;
+}
