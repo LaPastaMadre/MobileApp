@@ -29,6 +29,10 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+		$(document).bind("mobileinit", function(){
+			$.event.special.swipe.horizontalDistanceThreshold = '60'; // default 30px
+			$.event.special.swipe.verticalDistanceThreshold = '100'; // default 75px
+		});
         homePage.initialize();
         faqPage.initialize();
         ricettePage.initialize();
@@ -177,7 +181,10 @@ var ricettePage = {
             .then( function ( response ) {
             	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
                 $.each( response, function ( i, val ) {
-                    html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'>" + val.titolo + "</a></li>";
+                	var tmpTitolo = val.titolo;
+                	if(val.autore!="")
+                		tmpTitolo += " di " + val.autore;
+                    html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'><div>" + val.titolo + "</div><div class='ricettaAutore'>"+ val.autore +"</div></a></li>";
                 });
                 $ul.html( html );
                 $.mobile.loading( 'hide' );
