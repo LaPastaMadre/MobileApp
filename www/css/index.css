@@ -16,6 +16,26 @@
 .gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
 .gallery li img { display: block; width: 100%; height: auto; }
 
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+    margin: 0;
+}
+.ui-li-static.ui-collapsible {
+    padding: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+    border-top-width: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {
+    border-bottom-width: 0;
+}
+
+#faqList p
+{
+	word-wrap: break-word;
+	white-space: normal;
+}
+
 .menuPanelContainer {
 	background-color: #000;
 }
