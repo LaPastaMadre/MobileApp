@@ -6,11 +6,17 @@
 
 #faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 */
+
+*
+{
+	-webkit-overflow-scrolling: touch;
+	/*-webkit-transform: translate3d(0px,0px,0px);*/
+}
 #sfondo { 
-	width: 500px; 
-	height: 650px; 
+	width: 350px; 
+	height: 455px; 
 	background:  url(../img/sfondo.png) no-repeat; 
-	background-size: 500px 650px;
+	background-size: 350px 455px;
 	position: absolute;
     top: 5%;
     left: 5%;

@@ -30,11 +30,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		$(document).bind("mobileinit", function(){
-			//$.event.special.swipe.horizontalDistanceThreshold = '60'; // default 30px
+			$.event.special.swipe.horizontalDistanceThreshold = '40'; // default 30px
 			//$.event.special.swipe.verticalDistanceThreshold = '100'; // default 75px
 		});
         homePage.initialize();
         faqPage.initialize();
+        categorieRicettePage.initialize();
         ricettePage.initialize();
         bodyRicettePage.initialize();
         toolsPage.initialize();
@@ -77,11 +78,11 @@ var categorieRicettePage = {
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
-        	$(ricettePage.idRef +" #menupanel").panel( "open");
+        	$(categorieRicettePage.idRef +" #menupanel").panel( "open");
         });
         
         $(this.idRef).on("swiperight",function(){
-			$(ricettePage.idRef +" #menupanel").panel( "open");
+			$(categorieRicettePage.idRef +" #menupanel").panel( "open");
 		});
 	},
 	
@@ -113,6 +114,7 @@ var ricettePage = {
 	nomeCate: null,
 	idCate: null,
 	indexContent: 0,
+	pageScroll: null,
 	initialize: function()
 	{		
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
@@ -167,6 +169,7 @@ var ricettePage = {
 		            $ul.trigger( "updatelayout");
 		            $.mobile.loading( 'hide' );
 		            $ul.show();
+		            ricettePage.pageScroll.refresh();
 		            //$("#categoriesView #backBtn").show();
 		        }, function(){});
 	        }
@@ -184,7 +187,7 @@ var ricettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		ricettePage.pageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		ricettePage.goToContent(ricettePage.indexContent);
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
@@ -219,7 +222,7 @@ var ricettePage = {
 				ricettePage.loadSearchCategory();
 				break;
 		}
-
+		
 		$(ricettePage.$arrayNavBar[ricettePage.indexContent]).addClass('ui-btn-active');
 		$(ricettePage.$arrayNavBar[ricettePage.indexContent]).addClass('ui-state-persist');
 	},
@@ -268,6 +271,7 @@ var ricettePage = {
                 $.mobile.loading( 'hide' );
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
+                ricettePage.pageScroll.refresh();
             }, function(){});
     },
     
@@ -306,6 +310,7 @@ var ricettePage = {
             $ul.trigger( "updatelayout");
             $.mobile.loading( 'hide' );
             $ul.show();
+            ricettePage.pageScroll.refresh();
         }, function(){});
 	},
 	
@@ -343,6 +348,7 @@ var ricettePage = {
             $ul.trigger( "updatelayout");
             $.mobile.loading( 'hide' );
             $ul.show();
+            ricettePage.pageScroll.refresh();
         }, function(){});
 	},
 	
