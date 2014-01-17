@@ -12,8 +12,8 @@
 	background:  url(../img/sfondo.png) no-repeat; 
 	background-size: 500px 650px;
 	position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 5%;
+    left: 5%;
 }
 #infoBtn:after { background:  url(../img/info.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 #backBtn:after { background:  url(../img/previous.png) 50% 50% no-repeat;  background-size: 22px 22px; }

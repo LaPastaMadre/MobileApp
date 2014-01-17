@@ -30,8 +30,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		$(document).bind("mobileinit", function(){
-			$.event.special.swipe.horizontalDistanceThreshold = '60'; // default 30px
-			$.event.special.swipe.verticalDistanceThreshold = '100'; // default 75px
+			//$.event.special.swipe.horizontalDistanceThreshold = '60'; // default 30px
+			//$.event.special.swipe.verticalDistanceThreshold = '100'; // default 75px
 		});
         homePage.initialize();
         faqPage.initialize();
@@ -51,7 +51,7 @@ var homePage = {
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
-		
+				
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
@@ -63,8 +63,8 @@ var homePage = {
 		});
 	},
 	
-	_pageshowEvent: function(event, ui){		
-		$('#sizeWindow').html("Heigth: " + $(window).height() + " Width: "+ $(window).width());
+	_pageshowEvent: function(event, ui){
+		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 
@@ -86,6 +86,8 @@ var categorieRicettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
+		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		
 		ricettePage.loadcategories();
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
@@ -112,7 +114,7 @@ var ricettePage = {
 	idCate: null,
 	indexContent: 0,
 	initialize: function()
-	{
+	{		
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
@@ -182,6 +184,7 @@ var ricettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
+		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		ricettePage.goToContent(ricettePage.indexContent);
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
@@ -363,7 +366,7 @@ var bodyRicettePage = {
 	$arrayContent: null,
 	$arrayNavBar: null,
 	initialize: function()
-	{
+	{		
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
@@ -397,6 +400,7 @@ var bodyRicettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
+		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		bodyRicettePage.indexContent = 0;
 		bodyRicettePage.switchContent();
 	},
@@ -486,7 +490,7 @@ var bodyRicettePage = {
 var toolsPage = {
 	idRef: '#toolsView',
 	initialize: function()
-	{
+	{		
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
@@ -500,14 +504,14 @@ var toolsPage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		  //alert( 'This page was just hidden: '+ ui.prevPage);
+		  var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 
 var faqPage = {
 	idRef: '#faqView',
 	initialize: function()
-	{
+	{		
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
@@ -521,7 +525,7 @@ var faqPage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		  //alert( 'This page was just hidden: '+ ui.prevPage);
+		  var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 
