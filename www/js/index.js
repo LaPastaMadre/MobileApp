@@ -41,7 +41,9 @@ var app = {
         aboutPage.initialize();
     },
     
-    
+    applicationExit: function(){
+    	navigator.app.exitApp();
+    },
 };
 
 var homePage = {
@@ -50,9 +52,7 @@ var homePage = {
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		
-		$(this.idRef + " #exitBtn").on("click", function() {
-        	navigator.app.exitApp();
-        });
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
         	$(homePage.idRef +" #menupanel").panel( "open");
@@ -68,17 +68,54 @@ var homePage = {
 	},
 };
 
-var ricettePage = {
-	idRef: '#ricetteView',
-	$titoloCategoriaRicette: null,
-	bLoadCategories: true,
+var categorieRicettePage = {
+	idRef: '#categoriesView',
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
 		
-		$(this.idRef + " #exitBtn").on("click", function() {
-        	navigator.app.exitApp();
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
+        
+        $(this.idRef + " #menuBtn").on("click", function() {
+        	$(ricettePage.idRef +" #menupanel").panel( "open");
         });
+        
+        $(this.idRef).on("swiperight",function(){
+			$(ricettePage.idRef +" #menupanel").panel( "open");
+		});
+	},
+	
+	_pageshowEvent: function(event, ui){
+		ricettePage.loadcategories();
+		  //alert( 'This page was just hidden: '+ ui.prevPage);
+	},
+	
+	loadcategories: function(){
+        ricettePage.nomeCate = null;	    
+        ricettePage.idCate = null;
+    },
+    
+    loadcategory: function(id, name){
+        ricettePage.nomeCate = name;	    
+        ricettePage.idCate = id;
+        $.mobile.changePage("#categoryRicetteView");
+    },
+};
+
+var ricettePage = {	
+	idRef: '#categoryRicetteView',
+	$titoloCategoriaRicette: null,
+	$arrayContent: null,
+	$arrayNavBar: null,
+	topNumItems: 10,
+	nomeCate: null,
+	idCate: null,
+	indexContent: 0,
+	initialize: function()
+	{
+		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
+		
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
         	$(ricettePage.idRef +" #menupanel").panel( "open");
@@ -88,76 +125,114 @@ var ricettePage = {
 			$(ricettePage.idRef +" #menupanel").panel( "open");
 		});
 		
-        ricettePage.$titoloCategoriaRicette = $('#titoloCategoriaRicette');
-        var ricettalistID = "#ricetteList";		
-		$( ricettalistID).hide();    	
+		$( this.idRef + " #find" ).on( "filterablebeforefilter", function ( e, data ) {
+			var id =ricettePage.idCate;
+    		var name =ricettePage.nomeCate;
+    	
+	        var $input = $( data.input ),
+	            value = $input.val(),
+	            html = "";
+	    
+	    	var $ul = $('#find');
+		    $ul.html("");        
+	        if(value!="")
+	        {	            
+		        $.mobile.loading( 'show', {
+					text: 'Caricamento più votati categoria ' + name + '...',
+					textVisible: true,
+					//theme: 'z',
+					html: ""
+				});
+		        
+		        $.ajax({
+		            url: domainUrl + "/serviceapp.php?method=getFilteredByTitoloCategoryItems&id=" + id + "&filter=" + value + "&numItems="+ ricettePage.topNumItems,
+		            dataType: "jsonp",
+		            jsonpCallback: 'getFilteredByTitoloCategoryItems',
+		            crossDomain: true,
+		        })
+		        .then( function ( response ) {
+		        	var html="";
+		        	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
+		            $.each( response, function ( i, val ) {
+		            	var tmpTitolo = val.titolo;
+		            	if(val.autore!="")
+		            		tmpTitolo += " di " + val.autore;
+		                html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'><div>" + val.titolo + "</div><div class='ricettaAutore'>"+ val.autore +"</div></a></li>";
+		            });
+		            $ul.html( html );            
+		            //ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
+		            $ul.listview( "refresh" );
+		            $ul.trigger( "updatelayout");
+		            $.mobile.loading( 'hide' );
+		            $ul.show();
+		            //$("#categoriesView #backBtn").show();
+		        }, function(){});
+	        }
+	    });
+	    
+		ricettePage.$arrayContent = $(this.idRef +' ul[data-role="listview"]');
+		ricettePage.$arrayNavBar = $(this.idRef +' div[data-role="navbar"] a');
+		ricettePage.$arrayNavBar.on("click", function(){			
+			var index = jQuery.inArray( this ,ricettePage.$arrayNavBar);
+			ricettePage.goToContent(index);
+		});
+		
+        ricettePage.$titoloCategoriaRicette = $('#titoloCategoriaRicette');            	
 		$('form.ui-filterable').hide();
 	},
 	
 	_pageshowEvent: function(event, ui){
-		if(ricettePage.bLoadCategories){
-			ricettePage.loadcategories();			
-		}
+		ricettePage.goToContent(ricettePage.indexContent);
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
 	
-	loadcategories: function(){
-    	
-		$("#ricetteView #backBtn").hide();
-		var categoryListID = "#categoryList";
-		$( categoryListID).show();
-		var ricettalistID = "#ricetteList";		
-		$( ricettalistID).hide();    	
+	goToContent:function(newIndex)
+	{
+		ricettePage.indexContent= newIndex;
+	    ricettePage.switchContent();
+	},
+	
+	switchContent: function(){
+		var name =ricettePage.nomeCate;
+		ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
+		
 		$('form.ui-filterable').hide();
-    	var $ul = $( categoryListID), html = "";
-    	ricettePage.$titoloCategoriaRicette.text('Categorie Ricette');
-    	if($ul.html().trim()=="")
-    	{
-    		$.mobile.loading( 'show', {
-				text: 'Caricamento categorie...',
-				textVisible: true,
-				//theme: 'z',
-				html: ""
-			});	        
-	        $ul.html( "" );
-	        //$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-	        //$ul.listview( "refresh" );
-	        $.ajax({
-	            url: domainUrl + "/serviceapp.php?method=getCategories",
-	            dataType: "jsonp",
-	            jsonpCallback: 'callbackGetCategories',
-	            crossDomain: true,
-	            /*data: {
-	                //q: $input.val()
-	            }*/
-	        })
-	        .then( function ( response ) {
-	            $.each( response, function ( i, val ) {
-	                html += "<li><a href='javascript:ricettePage.loadcategory("+ val.category_id +", \""+ val.name + "\")'>" + val.name + "</a></li>";
-	            });
-	            $ul.html( html );
-	            $.mobile.loading( 'hide' );
-	            $ul.listview( "refresh" );
-	            $ul.trigger( "updatelayout");
-	            $("#ricetteView #backBtn").hide();
-	            ricettePage.bLoadCategories = false;
-	        });
-        }
-    },
-        
-    loadcategory: function(id, name){
+		ricettePage.$arrayContent.hide();
+		ricettePage.$arrayNavBar.removeClass('ui-btn-active');
+		ricettePage.$arrayNavBar.removeClass('ui-state-persist');
+
+		switch(ricettePage.indexContent)
+		{
+			case 0:
+				ricettePage.loadMostVoteCategory();
+				break;
+			case 1:
+				ricettePage.loadLastInsertCategory();
+				break;
+			case 2:
+				ricettePage.loadcategory();
+				break;
+			case 3:
+				ricettePage.loadSearchCategory();
+				break;
+		}
+
+		$(ricettePage.$arrayNavBar[ricettePage.indexContent]).addClass('ui-btn-active');
+		$(ricettePage.$arrayNavBar[ricettePage.indexContent]).addClass('ui-state-persist');
+	},
+	        
+    loadcategory: function(){
+    	var id =ricettePage.idCate;
+    	var name =ricettePage.nomeCate;
+    	
     	$.mobile.loading( 'show', {
 			text: 'Caricamento categoria ' + name + '...',
 			textVisible: true,
 			//theme: 'z',
 			html: ""
 		});
-		var categoryListID = "#categoryList";
-		$( categoryListID).hide();
-    	var ricettalistID = "#ricetteList";
-    	$( ricettalistID).show();
-		$('form.ui-filterable').show();
-    	var $ul = $( ricettalistID),
+		
+    	var $ul = $( '#allRicette'),
 	            html = "";
 	        $ul.html( "" );
 	        $ul.attr('data-filter', 'true');
@@ -188,12 +263,96 @@ var ricettePage = {
                 });
                 $ul.html( html );
                 $.mobile.loading( 'hide' );
-                ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
-                $("#ricetteView #backBtn").show();
             }, function(){});
     },
+    
+    loadMostVoteCategory: function(){    			
+    	var id =ricettePage.idCate;
+    	var name =ricettePage.nomeCate;
+    	    	
+    	$.mobile.loading( 'show', {
+			text: 'Caricamento più votati categoria ' + name + '...',
+			textVisible: true,
+			//theme: 'z',
+			html: ""
+		});
+
+    	var $ul = $('#mostVote');
+    	$ul.html("");        
+        
+        $.ajax({
+            url: domainUrl + "/serviceapp.php?method=getMostVoteCategoryItems&id=" + id + "&numItems="+ ricettePage.topNumItems,
+            dataType: "jsonp",
+            jsonpCallback: 'getMostVoteCategoryItems',
+            crossDomain: true,
+        })
+        .then( function ( response ) {
+        	var html="";
+        	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
+            $.each( response, function ( i, val ) {
+            	var tmpTitolo = val.titolo;
+            	if(val.autore!="")
+            		tmpTitolo += " di " + val.autore;
+                html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'><div>" + val.titolo + "</div><div class='ricettaAutore'>"+ val.autore +"</div></a></li>";
+            });
+            $ul.html( html );            
+            //ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
+            $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+            $.mobile.loading( 'hide' );
+            $ul.show();
+        }, function(){});
+	},
+	
+	loadLastInsertCategory: function(){
+		var id =ricettePage.idCate;
+    	var name =ricettePage.nomeCate;
+				
+    	$.mobile.loading( 'show', {
+			text: 'Caricamento più votati categoria ' + name + '...',
+			textVisible: true,
+			//theme: 'z',
+			html: ""
+		});
+		    	 
+    	var $ul = $('#lastInsert');
+    	$ul.html("");
+        $.ajax({
+            url: domainUrl + "/serviceapp.php?method=getLastInsertCategoryItems&id=" + id + "&numItems="+ ricettePage.topNumItems,
+            dataType: "jsonp",
+            jsonpCallback: 'getMostVoteCategoryItems',
+            crossDomain: true,
+        })
+        .then( function ( response ) {
+        	var html="";
+        	//html += "<li><a href='javascript:app.loadcategories();'>back</a></li>";
+            $.each( response, function ( i, val ) {
+            	var tmpTitolo = val.titolo;
+            	if(val.autore!="")
+            		tmpTitolo += " di " + val.autore;
+                html += "<li><a href='javascript:bodyRicettePage.loadbody("+ val.ricetta_id+ ")'><div>" + val.titolo + "</div><div class='ricettaAutore'>"+ val.autore +"</div></a></li>";
+            });
+            $ul.html( html );
+            //ricettePage.$titoloCategoriaRicette.text('Ricette '+ name);
+            $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+            $.mobile.loading( 'hide' );
+            $ul.show();
+        }, function(){});
+	},
+	
+	loadSearchCategory: function(){
+		var id =ricettePage.idCate;
+    	var name =ricettePage.nomeCate;
+				
+    	$('form.ui-filterable').show();
+    	  
+    	var $ul = $('#find');
+    	$ul.html("");
+    	$ul.show();
+	},
 };
 
 var bodyRicettePage = {
@@ -206,13 +365,11 @@ var bodyRicettePage = {
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
-		$(this.idRef + " #exitBtn").on("click", function() {
-        	navigator.app.exitApp();
-        });
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #backBtn").on("click", function() {        	
-        	ricettePage.loadcategory(bodyRicettePage.id_categoria, bodyRicettePage.name_categoria);
-        	$.mobile.changePage("#ricetteView");
+        	//ricettePage.loadcategory(bodyRicettePage.id_categoria, bodyRicettePage.name_categoria);
+        	$.mobile.changePage("#categoryRicetteView");
         });
         
         $( this.idRef ).on( "swipeleft", function(){
@@ -331,9 +488,7 @@ var toolsPage = {
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
-		$(this.idRef + " #exitBtn").on("click", function() {
-        	navigator.app.exitApp();
-        });
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
         	$(toolsPage.idRef +" #menupanel").panel( "open");
@@ -354,9 +509,7 @@ var faqPage = {
 	initialize: function()
 	{
 		$( this.idRef ).on( 'pageshow', this._pageshowEvent);
-		$(this.idRef + " #exitBtn").on("click", function() {
-        	navigator.app.exitApp();
-        });
+		$(this.idRef + " #exitBtn").on("click", app.applicationExit);
         
         $(this.idRef + " #menuBtn").on("click", function() {
         	$(faqPage.idRef +" #menupanel").panel( "open");

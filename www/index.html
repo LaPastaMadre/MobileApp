@@ -26,6 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/photoswipe.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.iscrollview.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />  
         <!-- <link rel="stylesheet" type="text/css" href="css/jqueryMobile.xlarge.css" />-->      
        <!-- <link rel="stylesheet" type="text/css" href="css/jqueryMobile.css" />
@@ -40,7 +41,7 @@
 		    	<h4>La Pasta Madre - Home</h4>
 		    	<a id="infoBtn" href="#aboutView" data-role="button" class="ui-btn-right" data-icon="custom">Info...</a>
 		    </div>		 
-		    <div data-role="content">
+		    <div data-role="content" data-iscroll>
 		   		<div id="sfondo"></div>
 		    </div>		 
 		    <div data-role="footer" data-position="fixed">
@@ -49,24 +50,69 @@
 		        <ul>
 			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
 					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>
-			        <li class="ricetteView"><a href="#ricetteView" id="ricetteBtn" >Ricette</a></li>
+			        <li class="ricetteView"><a href="#categoriesView" id="ricetteBtn" >Ricette</a></li>
 			        <li class="toolsView"><a href="#toolsView" id="toolsBtn" >Tools</a></li>
 			        <li class="exitBtn"><a href="#" id="exitBtn" >Exit</a></li>
 		        </ul>
 		        <!--<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right">Close</a>-->
 		    </div><!-- /panel -->
 		</div>
-		<div data-role="page" id="ricetteView" data-theme="b" class="menuPanelContainer">
+		<div data-role="page" id="categoriesView" data-theme="b" class="menuPanelContainer">
 		    <div data-theme="" data-role="header">
 		    	<a id="menuBtn" href="#" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-left" data-icon="bars"></a>
 		        <h3>La Pasta Madre</h3>
-		        <a id="backBtn" href="javascript:ricettePage.loadcategories();" data-role="button" class="ui-btn-right" data-icon="custom" style="display: none;">back</a>
 		    </div>		 
-		    <div data-role="content">
-		    	<h1 id="titoloCategoriaRicette">Categorie Ricette</h1>		        
+		    <div id="categoryListContent" data-role="content" data-iscroll>
+		    	<h1>Categorie Ricette</h1>		        
 		        <ul id="categoryList" data-role="listview" data-inset="true">
+		        	<li class="ui-first-child"><a href='javascript:categorieRicettePage.loadcategory(1, "Pane")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Pane</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(2, "Pizza")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Pizza</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(3, "Dolci")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Dolci</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(4, "Focacce")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Focacce</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(5, "Panificati Vari")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Panificati Vari</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(6, "Esuberi")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Esuberi</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(7, "Vegane")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Vegane</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(8, "Senza Glutine")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Senza Glutine</a></li>
+		        	<li><a href='javascript:categorieRicettePage.loadcategory(9, "Pasquali")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Pasquali</a></li>
+		        	<li class="ui-last-child"><a href='javascript:categorieRicettePage.loadcategory(10, "Grandi Lievitati")' class="ui-btn ui-btn-icon-right ui-icon-carat-r">Grandi Lievitati</a></li>
 				</ul>
-				<ul id="ricetteList" data-autodividers="true" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a">
+			</div>		 
+		    <div data-role="footer" data-position="fixed">
+		    </div>
+		    <div data-role="panel" id="menupanel" data-position="left" class="panel left">
+		        <ul>
+			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
+					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>
+			        <li class="ricetteView"><a href="#categoriesView" id="ricetteBtn" >Ricette</a></li>
+			        <li class="toolsView"><a href="#toolsView" id="toolsBtn" >Tools</a></li>
+			        <li class="exitBtn"><a href="#" id="exitBtn" >Exit</a></li>
+		        </ul>
+		        <!--<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right">Close</a>-->
+		    </div><!-- /panel -->
+		</div>
+		<div data-role="page" id="categoryRicetteView" data-theme="b" class="menuPanelContainer">
+		    <div data-theme="" data-role="header">
+		    	<a id="menuBtn" href="#" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-left" data-icon="bars"></a>
+		        <h3>La Pasta Madre</h3>
+		        <a id="backBtn" href="#categoriesView" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
+		    </div>
+			<div id="ricetteListContent" data-role="content" data-iscroll>
+				<h1 id="titoloCategoriaRicette">Ricette</h1>				
+				<div data-role="navbar">
+				    <ul>
+				        <li><a href="#" class="ui-btn-active">Più Votate</a></li>
+				        <li><a href="#">Ultime Inserite</a></li>				        
+				        <li><a href="#">Tutte</a></li>
+				        <li><a href="#">Cerca</a></li>
+				    </ul>
+				</div><!-- /navbar -->
+				<ul id="mostVote" data-role="listview" data-inset="true">				
+				</ul>
+				<ul id="lastInsert" data-role="listview" style="display: none;" data-inset="true">					
+				</ul>
+				<ul id="allRicette" data-role="listview" style="display: none;" data-inset="true">					
+				</ul>
+				<ul id="find" data-role="listview" data-filter-reveal="true" data-autodividers="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a" style="display: none;" data-inset="true">					
 				</ul>
 		    </div>		 
 		    <div data-role="footer" data-position="fixed">
@@ -75,7 +121,7 @@
 		        <ul>
 			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
 					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>
-			        <li class="ricetteView"><a href="#ricetteView" id="ricetteBtn" >Ricette</a></li>
+			        <li class="ricetteView"><a href="#categoriesView" id="ricetteBtn" >Ricette</a></li>
 			        <li class="toolsView"><a href="#toolsView" id="toolsBtn" >Tools</a></li>
 			        <li class="exitBtn"><a href="#" id="exitBtn" >Exit</a></li>
 		        </ul>
@@ -87,7 +133,7 @@
 		    	<a id="menuBtn" href="#" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-left" data-icon="bars"></a>
 		        <h3>La Pasta Madre - F.A.Q.</h3>
 		    </div>		 
-		    <div data-role="content">
+		    <div data-role="content" data-iscroll>
 		    	<ul data-role="listview" id="faqList">
 					<li data-role="collapsible" data-iconpos="left" data-inset="false">
 						<h2>PM-Autoprodotta</h2>
@@ -322,7 +368,7 @@
 		        <ul>
 			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
 					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>
-			        <li class="ricetteView"><a href="#ricetteView" id="ricetteBtn" >Ricette</a></li>
+			        <li class="ricetteView"><a href="#categoriesView" id="ricetteBtn" >Ricette</a></li>
 			        <li class="toolsView"><a href="#toolsView" id="toolsBtn" >Tools</a></li>
 			        <li class="exitBtn"><a href="#" id="exitBtn" >Exit</a></li>
 		        </ul>
@@ -346,7 +392,7 @@
 		        <ul>
 			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
 					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>
-			        <li class="ricetteView"><a href="#ricetteView" id="ricetteBtn" >Ricette</a></li>
+			        <li class="ricetteView"><a href="#categoriesView" id="ricetteBtn" >Ricette</a></li>
 			        <li class="toolsView"><a href="#toolsView" id="toolsBtn" >Tools</a></li>
 			        <li class="exitBtn"><a href="#" id="exitBtn" >Exit</a></li>
 		        </ul>
@@ -358,19 +404,19 @@
 		    	<a id="backBtn" href="#" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		        <h3 id='titoloRicetta'></h3>
 		    </div>		 
-		    <div id="contentIngredienti" data-role="content" data-theme="d">
+		    <div id="contentIngredienti" data-role="content" data-theme="d" data-iscroll>
 		    	<h1>Ingredienti</h1>
 		        <center><p id='ingredienti'></p></center>
 		        <!--<h1>Procedimento</h1>
 		        <p id='procedimento'></p>-->
 			</div>
-			<div id="contentProcedimento" data-role="content" data-theme="d" style="display: none;">
+			<div id="contentProcedimento" data-role="content" data-theme="d" style="display: none;" data-iscroll>
 		    	<!--<h1>Ingredienti</h1>
 		        <center><p id='ingredienti'></p></center>-->
 		        <h1>Procedimento</h1>
 		        <p id='procedimento'></p>
 			</div>
-			<div id="contentFoto" data-role="content" data-theme="d" style="display: none;">
+			<div id="contentFoto" data-role="content" data-theme="d" style="display: none;" data-iscroll>
 		    	<!--<h1>Ingredienti</h1>
 		        <center><p id='ingredienti'></p></center>-->
 		        <h1>Foto</h1>
@@ -388,7 +434,7 @@
 					
 				</ul>
 			</div>
-			<div id="contentVideo" data-role="content" data-theme="d" style="display: none;">
+			<div id="contentVideo" data-role="content" data-theme="d" style="display: none;" data-iscroll>
 		    	<!--<h1>Ingredienti</h1>
 		        <center><p id='ingredienti'></p></center>-->
 		        <h1>Video</h1>
@@ -412,7 +458,7 @@
 		        <h3>Informazioni su...</h3>
 		        <a id="backBtn" href="#homeView" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		    </div>		 
-		    <div data-role="content">
+		    <div data-role="content" >
 		        <h1><b><i>La Pasta Madre</i></b></h1><BR>
 		        <h1><b>Versione:</b> <i>0.2</i></h1><BR>
 		        <h1><b>Autore:</b> <i>Denis Ironi</i></h1><BR>
@@ -422,10 +468,11 @@
 		    </div>
 		</div>
 		
+		<script type="text/javascript" src="js/iscroll.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.mobile.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.iscrollview.js"></script>
         <script type="text/javascript" src="js/klass.min.js"></script>
-        <!--<script type="text/javascript" src="js/code.photoswipe.js"></script>-->
         <script type="text/javascript" src="js/code.photoswipe.jquery.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
