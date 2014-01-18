@@ -7,11 +7,16 @@
 #faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 */
 
-*
-{
-	-webkit-overflow-scrolling: touch;
-	/*-webkit-transform: translate3d(0px,0px,0px);*/
+*.scrollable {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
+ 
+/* iOS specific fix, don't use it on Android devices */
+.scrollable > * {
+    -webkit-transform: translateZ(0px);
+}
+
 #sfondo { 
 	width: 350px; 
 	height: 455px; 

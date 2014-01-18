@@ -187,7 +187,7 @@ var ricettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		ricettePage.pageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		//ricettePage.pageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		ricettePage.goToContent(ricettePage.indexContent);
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
 	},
@@ -271,7 +271,7 @@ var ricettePage = {
                 $.mobile.loading( 'hide' );
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
-                ricettePage.pageScroll.refresh();
+                //ricettePage.pageScroll.refresh();
             }, function(){});
     },
     
