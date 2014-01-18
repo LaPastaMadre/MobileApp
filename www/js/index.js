@@ -30,7 +30,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		$(document).bind("mobileinit", function(){
-			$.event.special.swipe.horizontalDistanceThreshold = '40'; // default 30px
+			// Setting default page transition to slide
+            $.mobile.defaultPageTransition = 'slide';
+            
+			$.event.special.swipe.horizontalDistanceThreshold = '50'; // default 30px
 			//$.event.special.swipe.verticalDistanceThreshold = '100'; // default 75px
 		});
         homePage.initialize();
@@ -65,7 +68,7 @@ var homePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		//var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 
@@ -87,7 +90,7 @@ var categorieRicettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		//var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		
 		ricettePage.loadcategories();
 		  //alert( 'This page was just hidden: '+ ui.prevPage);
@@ -406,7 +409,7 @@ var bodyRicettePage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		//var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 		bodyRicettePage.indexContent = 0;
 		bodyRicettePage.switchContent();
 	},
@@ -510,7 +513,7 @@ var toolsPage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		  var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		  //var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 
@@ -531,7 +534,7 @@ var faqPage = {
 	},
 	
 	_pageshowEvent: function(event, ui){
-		  var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
+		  //var myPageScroll = new IScroll('.iscroll-content', { eventPassthrough: true, scrollX: true, scrollY: false });
 	},
 };
 

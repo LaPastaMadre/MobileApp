@@ -100,30 +100,28 @@
 		        <h3>La Pasta Madre</h3>
 		        <a id="backBtn" href="#categoriesView" data-role="button" class="ui-btn-right" data-icon="custom">back</a>
 		    </div>
-			<div id="ricetteListContent" data-role="content">
-				<div class="iscroll-content" data-iscroll>
-					<h1 id="titoloCategoriaRicette">Ricette</h1>				
-					<div data-role="navbar">
-					    <ul>
-					        <li><a href="#" class="ui-btn-active">Più Votate</a></li>
-					        <li><a href="#">Ultime Inserite</a></li>				        
-					        <li><a href="#">Tutte</a></li>
-					        <li><a href="#">Cerca</a></li>
-					    </ul>
-					</div><!-- /navbar -->
-					<ul id="mostVote" data-role="listview" data-inset="true">				
-					</ul>
-					<ul id="lastInsert" data-role="listview" style="display: none;" data-inset="true">					
-					</ul>
-					<ul id="allRicette" data-role="listview" data-autodividers="true" style="display: none;" data-inset="true" class="scrollable">					
-					</ul>
-					<ul id="find" data-role="listview" data-filter-reveal="true" data-autodividers="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a" style="display: none;" data-inset="true">					
-					</ul>
-				</div>
-		    </div>		 
+			<div id="ricetteListContent" data-role="content" class="scrollable">				
+				<h1 id="titoloCategoriaRicette">Ricette</h1>				
+				<div data-role="navbar">
+				    <ul>
+				        <li><a href="#" class="ui-btn-active">Più Votate</a></li>
+				        <li><a href="#">Ultime Inserite</a></li>				        
+				        <li><a href="#">Tutte</a></li>
+				        <li><a href="#">Cerca</a></li>
+				    </ul>
+				</div><!-- /navbar -->
+				<ul id="mostVote" data-role="listview" data-inset="true">				
+				</ul>
+				<ul id="lastInsert" data-role="listview" style="display: none;" data-inset="true">					
+				</ul>
+				<ul id="allRicette" data-role="listview" data-autodividers="true" style="display: none;" data-inset="true">					
+				</ul>
+				<ul id="find" data-role="listview" data-filter-reveal="true" data-autodividers="true" data-filter="true" data-filter-placeholder="Cerca ricetta.." data-filter-theme="a" style="display: none;" data-inset="true">					
+				</ul>
+			</div>	 
 		    <div data-role="footer" data-position="fixed">
 		    </div>
-		    <div data-role="panel" id="menupanel" data-position="left" class="panel left">
+		    <div data-role="panel" id="menupanel" data-position="left" data-position-fixed="true" class="panel left">
 		        <ul>
 			        <li class="homeView"><a href="#homeView" id="homeBtn" >Home</a></li>
 					<li class="faqView"><a href="#faqView" id="faqBtn" >F.A.Q.</a></li>

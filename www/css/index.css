@@ -7,9 +7,35 @@
 #faqBtn:after { background:  url(../img/faq.png) 50% 50% no-repeat;  background-size: 22px 22px; }
 */
 
+body {
+    margin: 0;
+}
+ 
+div#container {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+ 
+div[data-role="header"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+ 
+div[data-role="content"] {
+    position: absolute;
+    top: 41px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+        
 *.scrollable {
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
 }
  
 /* iOS specific fix, don't use it on Android devices */
