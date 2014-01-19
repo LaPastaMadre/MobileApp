@@ -25,4 +25,5 @@
 	<icon src="icon.png" />
 	<preference name="permissions" value="none"/>
 	<access origin="http://lapastamadre.96.lt" subdomains="true" />
+	<access origin="http://127.0.0.1*"/>
 </widget>
