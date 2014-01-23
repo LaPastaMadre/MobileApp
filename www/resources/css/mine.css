@@ -1,0 +1,15 @@
+.faq {
+	-webkit-mask-image:url('../icons/faq.png');
+}
+
+.ricette {
+	-webkit-mask-image:url('../icons/ricette.png');
+}
+
+.tools {
+	-webkit-mask-image:url('../icons/toolbox.png');
+}
+
+.home {
+	-webkit-mask-image:url('../icons/house.png');
+}
