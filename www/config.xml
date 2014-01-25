@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.hexstudy.lapastamadremobile"
-        versionCode = "025" 
-        version     = "0.2.5" >
+        versionCode = "030" 
+        version     = "0.3.0" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -17,13 +17,12 @@
         Denis Ironi
     </author>
 	<!--<gap:platform name="ios" />-->
-	<gap:platform name="android" />	
-	<gap:platform name="symbian" />
-	<gap:platform name="blackberry" />
-	<gap:platform name="winphone" />
+	<gap:platform name="android" />
 	<preference name="phonegap-version" value="2.9.0" />
 	<icon src="icon.png" />
 	<preference name="permissions" value="none"/>
 	<access origin="http://lapastamadre.96.lt" subdomains="true" />
+	<access origin="http://i.w.inmobi.com/" subdomains="true" />
+	<access origin="http://cf.cdn.inmobi.com/" subdomains="true" />
 	<access origin="http://127.0.0.1*"/>
 </widget>

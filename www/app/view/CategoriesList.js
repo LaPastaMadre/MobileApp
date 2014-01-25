@@ -9,9 +9,6 @@ Ext.define("LaPastaMadre.view.CategoriesList",{
 				'<div>{name}</div>',
 				//'<p>{name}</p>',
 			'</div>'
-		],
-		onItemDisclosure: function(record,btn,index) {
-			this.fireEvent("openCategoryCommand", record);
-		}
+		]
 	},
 });

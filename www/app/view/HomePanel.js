@@ -5,6 +5,12 @@ Ext.define("LaPastaMadre.view.HomePanel",{
 	config: {
 		title: "Home",
 		iconCls: "home",
-		items: [ {html: "HomePage Applicazione La Pasta Madre" } ]
+		items: [ {
+            xtype: 'image',
+            src: 'resources/images/sfondo.png',
+            width: 500,
+            height: 650,
+            centered: true
+        }, ]
 	}
 });

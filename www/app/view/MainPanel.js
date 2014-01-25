@@ -2,7 +2,7 @@ Ext.define("LaPastaMadre.view.MainPanel", {
 	extend: "Ext.tab.Panel",
 	xtype: "mainpanel",
 
-	config: {
+	config: {		
 		tabBarPosition: "bottom",
 		items: [
 			{
@@ -13,9 +13,8 @@ Ext.define("LaPastaMadre.view.MainPanel", {
 					{ xtype: "spacer" },
 					{
 						xtype: "button",
+						id: "infocommand",
 						text: "Info",
-						handler: this.onInfoTap,
-						scope: this
 					}
 				]
 			},			
@@ -25,8 +24,4 @@ Ext.define("LaPastaMadre.view.MainPanel", {
 			{xtype: "toolspanel"},
 		]
 	},
-	
-	onInfoTap: function() {
-		this.fireEvent("infoCommand",this);
-	}
 });

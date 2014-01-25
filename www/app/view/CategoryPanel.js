@@ -7,24 +7,26 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
 	config: {
 		title: "Ricette",
 		iconCls: "ricette",
+		id: "categoryPanel",
 		layout: "fit",
-		items: [ 
-			//{html: "La Pasta Madre" },
+		items: [
 			{
 				xtype: "toolbar",
+				id: "toolbar",
 				docked: "top",
 				title: "Categoria XXX",
 				items: [
 					{
 						xtype: "button",
 						ui: "back",
-						text: "Back", 
-						handler: this.onBackTap,
-						scope: this
+						id: "backCategoryCommand",
+						text: "Back",
 					},
 				]
 			},
-			{ xtype: "categorylist"},
+			{ 
+				xtype: "categorylist",
+			},
 		 ]
 	},
 });

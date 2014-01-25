@@ -5,6 +5,7 @@ Ext.define("LaPastaMadre.view.FaqPanel",{
 	config: {
 		title: "FAQ",
 		iconCls: "faq",
+		iconMask: true,
 		items: [ {html: "Questa è la pagina delle FAQ" } ]
 	},
 });

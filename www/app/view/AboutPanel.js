@@ -15,15 +15,11 @@ Ext.define("LaPastaMadre.view.AboutPanel",{
 					{
 						xtype: "button",
 						ui: "back",
-						text: "Back", 
-						handler: this.onBackTap,
-						scope: this
+						id: "backInfoCommand",
+						text: "Back",
 					},
 				]
 			}
 		 ]
 	},
-	onBackTap: function(){
-		this.fireEvent("backInfoCommand",this);
-	}	
 });
