@@ -5,6 +5,8 @@ Ext.define("LaPastaMadre.store.Faqs",{
 	config: {
 		storeid: "Faqs",
 		model: "LaPastaMadre.model.Faq",
+		groupField: "group_name",
+		autoLoad: true,
 		data: [
 			{ group_name: "PM-Autoprodotta", question: "La mia PM a 48 ore dalla nascita è coperta di puntini. Butto?", answer: "<p>No. E' una cosa che capita a molti,prendi 100g dal cuore del panetto e rinfresca, coi rinfreschi ripetuti i puntini scompariranno.</p>"},
 			{ group_name: "PM-Autoprodotta", question: "La Mia PM nata circa 10 giorni fa non raddoppia sempre.", answer: "<p>Una PM appena nata non ha ancora raggiunto la stabilità tra fermenti e lievti, perciò potrebbe aumentare in modo diverso da un giorno all'altro.</p><p>Se presenta bollicine è perchè la fermentazione è partita quindi devi avere pazienza e continuare coi rinfreschi.?</p>"},
@@ -42,6 +44,6 @@ Ext.define("LaPastaMadre.store.Faqs",{
 									
 			{ group_name: "Impastatrici", question: "E' possibile panificare senza impastatrice?", answer: "<p>Assolutamente sì, anche se per certe cose, ed in primis certi lievitati tosti come panettoni e similari, è vivamente consigliata.</p>"},
 			{ group_name: "Impastatrici", question: "Vorrei comprarmi un'impastatrice, cosa compro?", answer: "<p>discussioni sulle impastatrici ne sono state fatte un sacco, basta fare ricerca digitando impastatrice o planetaria con lo strumento apposito (la lente in alto a destra), in questo post ad esempio si fa un sondaggio sui vari marchi/modelli</p><p><a href='https://www.facebook.com/groups/lapastamadre/permalink/315210891917143/?comment_id=315852571852975&offset=0&total_comments=44'>Link Gruppo</a></p>"},
-		]
-	}
+		],
+	},
 });

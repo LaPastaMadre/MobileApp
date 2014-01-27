@@ -46,7 +46,7 @@ Ext.define("LaPastaMadre.controller.Main",{
 				xtype: "toolbar",
 				autoCreate: true
 			},
-			faqPanel : "faqpanel",
+			faqsList: "faqslist",
 			toolsPanel : "toolspanel",
 			infoCommand: {
 				selector: "#infocommand",
@@ -81,6 +81,9 @@ Ext.define("LaPastaMadre.controller.Main",{
             },
             lastInsertList:{
                 itemsingletap: "onOpenRicettaCommand"
+            },
+            faqsList:{
+                itemsingletap: "onfaqListCommand"
             },
 			infoCommand:{
 				tap: "onInfoCommand",
@@ -150,6 +153,20 @@ Ext.define("LaPastaMadre.controller.Main",{
             },
             scope: this
         });		
+	},
+	onfaqListCommand: function(index, target, record, e, eOpts){
+	    var rec = record.getRecord();
+	    Ext.Msg.show({
+	        title: rec.data.question, 
+	        message: rec.data.answer,
+	        scrollable: {
+                direction: 'vertical',
+                directionLock: true
+            },
+            width: "350px",
+            height: "450px",
+            //multiLine: true,
+	    });
 	},
 	onSearchClearIconTap: function() {
         //call the clearFilter method on the store instance

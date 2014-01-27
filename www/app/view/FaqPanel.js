@@ -2,10 +2,14 @@ Ext.define("LaPastaMadre.view.FaqPanel",{
 	extend: "Ext.Panel",
 	xtype: "faqpanel",
 	
+	requires: ["LaPastaMadre.view.FaqsList"],
+	
 	config: {
 		title: "FAQ",
 		iconCls: "faq",
-		iconMask: true,
-		items: [ {html: "Questa è la pagina delle FAQ" } ]
+		layout: "fit",
+		items: [
+		  { xtype: "faqslist"},
+        ]
 	},
 });
