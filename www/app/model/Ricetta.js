@@ -9,6 +9,8 @@ Ext.define('LaPastaMadre.model.Ricetta', {
 	        {name: "procedimento", type: "string" },
 	        {name: "autore", type: "string" },
 	        {name: "link_fonte", type: "string" },
+	        {name: "link_youtube", type: "string" },
+	        {name: "valutazione", type: "string" },
 	    ],
 	    belongsTo: 'Category',
 	    hasMany: 'Ingrediente'

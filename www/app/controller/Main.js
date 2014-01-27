@@ -34,6 +34,8 @@ Ext.define("LaPastaMadre.controller.Main",{
 				autoCreate: true
 			},
 			categoryList: '#categorylist',
+			mostVoteList: '#mostvotelist',
+			lastInsertList: '#lastinsertlist',
 			categoryPanel : {
 				selector: 'categoryPanel',
 				xtype: "categorypanel",
@@ -56,7 +58,9 @@ Ext.define("LaPastaMadre.controller.Main",{
 			},
 			backCategoryCommand: "#backCategoryCommand",
 			backItemCategoryCommand: "#backItemCategoryCommand",
-			backRicettaCommand: "#backRicettaCommand"
+			backRicettaCommand: "#backRicettaCommand",
+			searchField: "#searchField",
+			searchList: "#searchlist",
 		},
 
 		control: {
@@ -72,6 +76,12 @@ Ext.define("LaPastaMadre.controller.Main",{
 			categoryList:{
 				itemsingletap: "onOpenRicettaCommand"
 			},
+			mostVoteList:{
+                itemsingletap: "onOpenRicettaCommand"
+            },
+            lastInsertList:{
+                itemsingletap: "onOpenRicettaCommand"
+            },
 			infoCommand:{
 				tap: "onInfoCommand",
 				handler: "onInfoCommand"
@@ -87,6 +97,10 @@ Ext.define("LaPastaMadre.controller.Main",{
 			backRicettaCommand: {
 				tap: "onBackRicettaCommand",
 				handler: "onBackRicettaCommand"
+			},
+			searchField: {
+			    clearicontap: "onSearchClearIconTap",
+			    keyup: "onSearchKeyUp",
 			}
 		}
 	},
@@ -107,14 +121,24 @@ Ext.define("LaPastaMadre.controller.Main",{
 		var rec = record.getRecord();
 		this.getCategoryPanel().setTitle("Categoria " + rec.data.name);
 		this.getToolbarCategoryPanel().setTitle("Categoria " + rec.data.name);
-		var store = Ext.StoreManager.lookup("ItemsCategory");
-		store.getProxy().setExtraParam('id', rec.data.category_id);
-		store.load();
+		var stdStore = Ext.StoreManager.lookup("ItemsCategory");
+		stdStore.getProxy().setExtraParam('id', rec.data.category_id);
+		stdStore.load();
+		var lastInsertStore = Ext.StoreManager.lookup("LastInsertItemsCategory");
+        lastInsertStore.getProxy().setExtraParam('id', rec.data.category_id);
+        lastInsertStore.load();
+        var mostVoteStore = Ext.StoreManager.lookup("MostVoteItemsCategory");
+        mostVoteStore.getProxy().setExtraParam('id', rec.data.category_id);
+        mostVoteStore.load();
+        var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+        searchStore.getProxy().setExtraParam('id', rec.data.category_id);
+        searchStore.getProxy().setExtraParam('filter', "a");
+        searchStore.load();
 		Ext.Viewport.animateActiveItem(this.getCategoryPanel(), { type: "slide", direction: "left" });
 	},
 	onOpenRicettaCommand: function(index, target, record, e, eOpts){
 		var rec = record.getRecord();
-		Ext.Logger.log("Selected: " + rec.data.titolo);
+		//Ext.Logger.log("Selected: " + rec.data.titolo);
 		this.getRicettaPanel().setTitle(rec.data.titolo);
 		this.getRicettaToolbar().setTitle(rec.data.titolo);
 		var store = Ext.StoreManager.lookup("Ricette");
@@ -126,5 +150,29 @@ Ext.define("LaPastaMadre.controller.Main",{
             },
             scope: this
         });		
-	}	
+	},
+	onSearchClearIconTap: function() {
+        //call the clearFilter method on the store instance
+        this.getStore().clearFilter();
+    },
+    
+    onSearchKeyUp: function(field) {
+        //get the store and the value of the field
+        var value = field.getValue();       
+        var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+        //first clear any current filters on the store. If there is a new value, then suppress the refresh event
+        searchStore.clearFilter(!!value);
+
+        //check if a value is set first, as if it isnt we dont have to do anything
+        if (value) {
+            searchStore.getProxy().setExtraParam('filter', value);
+            searchStore.load({
+                callback: function(records, operation, success) {
+                    this.getSearchList().refresh();
+                },
+                scope: this
+            });
+            //the user could have entered spaces, so we must split them so we can loop through them all
+        }
+    },	
 });

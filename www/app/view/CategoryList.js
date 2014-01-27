@@ -3,16 +3,13 @@ Ext.define("LaPastaMadre.view.CategoryList",{
 	xtype: "categorylist",
 	
 	config: {
-		id: "categorylist",
-		store: "ItemsCategory",
 		itemTpl: [
 			'<div>',
-				'<div>{titolo}</div>',
-				'<p>{autore}</p>',
+				'<div><b>{titolo}</b></div>',
+				'<p style="font-size: small;"><i>{autore}</i></p>',
 			'</div>'
 		],
 		grouped: true,
-		indexBar: true,
-		
+		indexBar: true,		
 	},
 });

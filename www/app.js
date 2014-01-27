@@ -12,8 +12,10 @@ Ext.application({
     phoneIcon: "resources/images/app-iphone-icon.png",
 
     controllers: ["Main"],
-    models: ["ItemCategory","Category", "Ingrediente", "Ricetta"],
-    stores: ["Categories","ItemsCategory", "Ricette"],
+    models: ["ItemCategory","Category", "Ingrediente", "Ricetta", "Faq"],
+    stores: ["Categories","ItemsCategory", 
+             "Ricette", "Ingredienti", "SearchItemsCategory",
+             "LastInsertItemsCategory", "MostVoteItemsCategory", "Faqs"],
 	views: ["Viewport", "MainPanel", "HomePanel", "CategoriesPanel", 
 			"CategoryPanel", "FaqPanel", "ToolsPanel", "AboutPanel",
 			"RicettaPanel"],
