@@ -24,15 +24,15 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
 					},
 				]
 			},
-			{ 
+			{
 			    xtype: "tabpanel",
-			    tabBar:{
+			    tabBar: {
 			        layout:{
 			            pack: "center",
 			        }
 			    },
-			    layout:{type: 'card', animation: {type: 'flip', direction: 'left'}},
-			    items:[				    
+			    layout: { type: 'card', animation: { type: 'flip', direction: 'left'} },
+			    items: [				    
 				    {
                         title: "Più Votate",
                         xtype: "categorylist",
@@ -57,30 +57,8 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
                     },
                     {
                         title: "Cerca",
+                        id: "categorysearchlist",
                         xtype: "categorysearchlist",
-                        //xtype:"panel",
-                        // items:[
-                            // {
-                                // xtype: 'toolbar',
-                                // docked: 'top',
-//             
-                                // items: [
-                                    // { xtype: 'spacer' },
-                                    // {
-                                        // id: "searchField",
-                                        // xtype: 'searchfield',
-                                        // placeHolder: 'Search...',
-                                    // },
-                                    // { xtype: 'spacer' }
-                                // ]
-                            // },
-                            // {
-                                // xtype: "categorylist",
-                                // id: "searchlist",
-                                // store: "SearchItemsCategory",
-                                // //emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Items</div>',
-                            // }
-                        // ]
                     },
 				]
 			},

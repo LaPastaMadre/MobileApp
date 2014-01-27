@@ -1,8 +1,8 @@
-Ext.define("LaPastaMadre.controller.Main",{
+Ext.define("LaPastaMadre.controller.Main", {
 	extend: "Ext.app.Controller",
 	config: {
 		refs: {
-			mainPanel:{
+			mainPanel: {
 				selector: 'mainpanel',
 				xtype: "mainpanel",
 				autoCreate: true
@@ -11,7 +11,7 @@ Ext.define("LaPastaMadre.controller.Main",{
 				selector: 'aboutpanel',
 				xtype: "aboutpanel",
 				autoCreate: true
-			}, 
+			},
 			homePanel : "homepanel",
 			categoriesList : {
 				selector: 'categorieslist',
@@ -23,12 +23,12 @@ Ext.define("LaPastaMadre.controller.Main",{
 				xtype: "categoriespanel",
 				autoCreate: true
 			},
-			ricettaPanel: { 
+			ricettaPanel: {
 				selector: 'ricettapanel',
 				xtype: "ricettapanel",
 				autoCreate: true
 			},
-			ricettaToolbar: { 
+			ricettaToolbar: {
 				selector: 'ricettapanel toolbar',
 				xtype: "toolbar",
 				autoCreate: true
@@ -36,6 +36,7 @@ Ext.define("LaPastaMadre.controller.Main",{
 			categoryList: '#categorylist',
 			mostVoteList: '#mostvotelist',
 			lastInsertList: '#lastinsertlist',
+			categorySearchList: '#categorysearchlist',
 			categoryPanel : {
 				selector: 'categoryPanel',
 				xtype: "categorypanel",
@@ -46,6 +47,7 @@ Ext.define("LaPastaMadre.controller.Main",{
 				xtype: "toolbar",
 				autoCreate: true
 			},
+			tabCategoryPanel: "tabpanel",
 			faqsList: "faqslist",
 			toolsPanel : "toolspanel",
 			infoCommand: {
@@ -60,32 +62,42 @@ Ext.define("LaPastaMadre.controller.Main",{
 			backItemCategoryCommand: "#backItemCategoryCommand",
 			backRicettaCommand: "#backRicettaCommand",
 			searchField: "#searchField",
-			searchList: "#searchlist",
+			searchList: "#searchlist"
 		},
 
 		control: {
 			mainPanel: {
 				infoCommand: "onInfoCommand"
 			},
-			aboutPanel:{
+			aboutPanel: {
 				backInfoCommand: "onBackInfoCommand"
 			},
-			categoriesList:{
+			categoriesList: {
 				itemsingletap: "onOpenCategoryCommand"
 			},
-			categoryList:{
-				itemsingletap: "onOpenRicettaCommand"
+			categoryList: {
+				itemsingletap: "onOpenRicettaCommand",
+				show: "onShowCategoryList",
+                hide: "onHideCategoryList"
 			},
-			mostVoteList:{
-                itemsingletap: "onOpenRicettaCommand"
+			mostVoteList: {
+                itemsingletap: "onOpenRicettaCommand",
+                show: "onShowMostVoteList",
+                hide: "onHideMostVoteList"
             },
-            lastInsertList:{
-                itemsingletap: "onOpenRicettaCommand"
+            categorySearchList: {
+                show: "onShowCategorySearchList",
+                hide: "onHideCategorySearchList"
             },
-            faqsList:{
+            lastInsertList: {
+                itemsingletap: "onOpenRicettaCommand",
+                show: "onShowLastInsertList",
+                hide: "onHideLastInsertList"
+            },
+            faqsList: {
                 itemsingletap: "onfaqListCommand"
             },
-			infoCommand:{
+			infoCommand: {
 				tap: "onInfoCommand",
 				handler: "onInfoCommand"
 			},
@@ -103,14 +115,50 @@ Ext.define("LaPastaMadre.controller.Main",{
 			},
 			searchField: {
 			    clearicontap: "onSearchClearIconTap",
-			    keyup: "onSearchKeyUp",
+			    keyup: "onSearchKeyUp"
 			}
 		}
 	},
+	/* Funzioni */
+    
+    _manageTabPanel: function(indexItem){
+        var records = this.getCategoriesList().getSelection();
+        if(records.length == 1)
+        {
+            var cat_id = records[0].data.category_id;
+        
+            //if(!this.getMostVoteList().isHidden())
+            if(indexItem == 0)
+            {
+                var mostVoteStore = Ext.StoreManager.lookup("MostVoteItemsCategory");
+                mostVoteStore.getProxy().setExtraParam('id', cat_id);
+                mostVoteStore.load();
+            }
+            else if(indexItem == 1)
+            {
+                var lastInsertStore = Ext.StoreManager.lookup("LastInsertItemsCategory");
+                lastInsertStore.getProxy().setExtraParam('id', cat_id);
+                lastInsertStore.load();
+            }
+            else if(indexItem == 2)
+            {
+                var stdStore = Ext.StoreManager.lookup("ItemsCategory");
+                stdStore.getProxy().setExtraParam('id', cat_id);
+                stdStore.load();
+            }
+            else if(indexItem == 3)
+            {
+                var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+                searchStore.getProxy().setExtraParam('id', cat_id);
+            }
+        }
+    },	
 	
-	onInfoCommand: function() {
+	/* Eventi */
+	
+	onInfoCommand: function(){
 		Ext.Viewport.animateActiveItem(this.getAboutPanel(), { type: "slide", direction: "left" });
-	},	
+	},
 	onBackInfoCommand: function() {
 		Ext.Viewport.animateActiveItem(this.getMainPanel(), { type: "slide", direction: "right" });
 	},
@@ -123,20 +171,10 @@ Ext.define("LaPastaMadre.controller.Main",{
 	onOpenCategoryCommand: function(index, target, record, e, eOpts) {
 		var rec = record.getRecord();
 		this.getCategoryPanel().setTitle("Categoria " + rec.data.name);
-		this.getToolbarCategoryPanel().setTitle("Categoria " + rec.data.name);
-		var stdStore = Ext.StoreManager.lookup("ItemsCategory");
-		stdStore.getProxy().setExtraParam('id', rec.data.category_id);
-		stdStore.load();
-		var lastInsertStore = Ext.StoreManager.lookup("LastInsertItemsCategory");
-        lastInsertStore.getProxy().setExtraParam('id', rec.data.category_id);
-        lastInsertStore.load();
-        var mostVoteStore = Ext.StoreManager.lookup("MostVoteItemsCategory");
-        mostVoteStore.getProxy().setExtraParam('id', rec.data.category_id);
-        mostVoteStore.load();
-        var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
-        searchStore.getProxy().setExtraParam('id', rec.data.category_id);
-        searchStore.getProxy().setExtraParam('filter', "a");
-        searchStore.load();
+        this.getToolbarCategoryPanel().setTitle("Categoria " + rec.data.name);
+		        
+        this._manageTabPanel(0);
+        
 		Ext.Viewport.animateActiveItem(this.getCategoryPanel(), { type: "slide", direction: "left" });
 	},
 	onOpenRicettaCommand: function(index, target, record, e, eOpts){
@@ -191,5 +229,26 @@ Ext.define("LaPastaMadre.controller.Main",{
             });
             //the user could have entered spaces, so we must split them so we can loop through them all
         }
-    },	
+    },
+    
+    
+    onShowCategoryList: function(){
+        this._manageTabPanel(2);
+    },
+    onHideCategoryList: function(){},
+    
+    onShowMostVoteList: function(){
+        this._manageTabPanel(0);
+    },
+    onHideMostVoteList: function(){},  
+      
+    onShowCategorySearchList: function(){
+        this._manageTabPanel(3);
+    },
+    onHideCategorySearchList: function(){}, 
+      
+    onShowLastInsertList: function(){
+        this._manageTabPanel(1);
+    },
+    onHideLastInsertList: function(){},
 });

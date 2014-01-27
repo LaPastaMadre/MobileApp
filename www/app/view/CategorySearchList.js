@@ -2,9 +2,10 @@ Ext.define("LaPastaMadre.view.CategorySearchList",{
 	extend: "Ext.Panel",
 	xtype: "categorysearchlist",
 	
-	requires: ["Ext.List",'Ext.field.Search'],
+	requires: ["Ext.dataview.List",'Ext.field.Search'],
 	
 	config: {
+	    layout:  'vbox',
 		items: [
             {
                 xtype: 'toolbar',
@@ -17,11 +18,12 @@ Ext.define("LaPastaMadre.view.CategorySearchList",{
                         xtype: 'searchfield',
                         placeHolder: 'Search...',
                     },
-                    { xtype: 'spacer' }
+                    { xtype: 'spacer' },
                 ]
             },
             {
                 xtype: "list",
+                flex: 1,    //  add a flex property
                 id: "searchlist",
                 store: "SearchItemsCategory",
                 itemTpl: [
@@ -30,7 +32,7 @@ Ext.define("LaPastaMadre.view.CategorySearchList",{
                         '<p style="font-size: small;"><i>{autore}</i></p>',
                     '</div>'
                 ],
-                //emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Items</div>',
+                emptyText: '<div style="margin-top: 20px; text-align: center">Nessun elemento trovato</div>',
             }
 		]
 	},
