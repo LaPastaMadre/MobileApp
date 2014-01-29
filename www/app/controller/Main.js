@@ -89,6 +89,9 @@ Ext.define("LaPastaMadre.controller.Main", {
                 show: "onShowCategorySearchList",
                 hide: "onHideCategorySearchList"
             },
+            searchList: {
+                itemsingletap: "onOpenRicettaCommand",
+            },
             lastInsertList: {
                 itemsingletap: "onOpenRicettaCommand",
                 show: "onShowLastInsertList",
@@ -208,7 +211,9 @@ Ext.define("LaPastaMadre.controller.Main", {
 	},
 	onSearchClearIconTap: function() {
         //call the clearFilter method on the store instance
-        this.getStore().clearFilter();
+        //this.getStore().clearFilter();
+        var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+        searchStore.removeAll( false );
     },
     
     onSearchKeyUp: function(field) {

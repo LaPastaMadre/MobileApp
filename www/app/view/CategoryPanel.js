@@ -27,6 +27,10 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
 			{
 			    xtype: "tabpanel",
 			    tabBar: {
+			        scrollable: {
+                        direction: 'horizontal',
+                        directionLock: true
+                    },
 			        layout:{
 			            pack: "center",
 			        }

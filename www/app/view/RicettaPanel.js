@@ -24,8 +24,7 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
 				xtype: 'carousel',
 				cls: 'card',
 			    styleHtmlContent: true,
-			    height: '100%',
-			    width:  '100%'
+			    height: '100%'
 			},
             {
                 xtype: "toolbar",
@@ -70,13 +69,21 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
                     title: 'Ingredienti',
                     xtype   : 'panel',
                     html: "<h2>Ingredienti</h2>" + ingredienti,
-                    flex: 1
+                    flex: 1,
+                    scrollable: {
+                        direction: 'vertical',
+                        directionLock: true
+                    }
                 });
                 carouselUi.add({
                     title: 'Procedimento',
                     xtype   : 'panel',
                     html: "<h2>Procedimento</h2>" + procedimento,
-                    flex: 1
+                    flex: 1,
+                    scrollable: {
+                        direction: 'vertical',
+                        directionLock: true
+                    }
                 });
                 /*
                 carouselUi.add({
