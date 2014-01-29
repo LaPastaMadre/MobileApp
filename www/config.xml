@@ -18,7 +18,7 @@
     </author>
 	<!--<gap:platform name="ios" />-->
 	<gap:platform name="android" />
-	<preference name="phonegap-version" value="2.9.0" />
+	<preference name="phonegap-version" value="3.1.0" />
 	<icon src="icon.png" />
 	<preference name="permissions" value="none"/>
 	<access origin="http://lapastamadre.96.lt" subdomains="true" />
