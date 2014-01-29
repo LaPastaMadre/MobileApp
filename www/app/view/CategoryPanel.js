@@ -25,6 +25,7 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
 				]
 			},
 			{
+			    id: "categoryTabPanel",
 			    xtype: "tabpanel",
 			    tabBar: {
 			        scrollable: {
@@ -58,6 +59,12 @@ Ext.define("LaPastaMadre.view.CategoryPanel",{
                         xtype: "categorylist",
                         id: "categorylist",
                         store: "ItemsCategory",
+						plugins: [
+							{
+								xclass: 'Ext.plugin.ListPaging',
+								autoPaging: true
+							}
+						],
                     },
                     {
                         title: "Cerca",

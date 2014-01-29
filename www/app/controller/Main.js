@@ -47,7 +47,7 @@ Ext.define("LaPastaMadre.controller.Main", {
 				xtype: "toolbar",
 				autoCreate: true
 			},
-			tabCategoryPanel: "tabpanel",
+			tabCategoryPanel: "#categoryTabPanel",
 			faqsList: "faqslist",
 			toolsPanel : "toolspanel",
 			infoCommand: {
@@ -151,7 +151,7 @@ Ext.define("LaPastaMadre.controller.Main", {
             }
             else if(indexItem == 3)
             {
-                var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+                var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");                
                 searchStore.getProxy().setExtraParam('id', cat_id);
             }
         }
@@ -175,7 +175,16 @@ Ext.define("LaPastaMadre.controller.Main", {
 		var rec = record.getRecord();
 		this.getCategoryPanel().setTitle("Categoria " + rec.data.name);
         this.getToolbarCategoryPanel().setTitle("Categoria " + rec.data.name);
-		        
+        this.getSearchField().setValue('');
+        var mostVoteStore = Ext.StoreManager.lookup("MostVoteItemsCategory");
+        mostVoteStore.removeAll( false );
+        var lastInsertStore = Ext.StoreManager.lookup("LastInsertItemsCategory");
+        lastInsertStore.removeAll( false );
+        var stdStore = Ext.StoreManager.lookup("ItemsCategory");
+        stdStore.removeAll( false );		    
+        var searchStore = Ext.StoreManager.lookup("SearchItemsCategory");
+        searchStore.removeAll( false );
+        this.getTabCategoryPanel().setActiveItem(this.getMostVoteList());
         this._manageTabPanel(0);
         
 		Ext.Viewport.animateActiveItem(this.getCategoryPanel(), { type: "slide", direction: "left" });
