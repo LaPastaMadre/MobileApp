@@ -89,7 +89,7 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
                 carouselUi.add({
                     title: 'Procedimento',
                     xtype   : 'panel',
-                    html: "<h2>Procedimento</h2>" + procedimento,
+                    html: "<div style='padding-right: 7%;'><h2>Procedimento</h2>" + procedimento + "</div>",
                     flex: 1,
                     scrollable: {
                         direction: 'vertical',
@@ -105,10 +105,8 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
                         tpl: new Ext.XTemplate(
                               '<h2>Video</h2><br>',
                               '<tpl for=".">',
-                              '<div class="video youtube">',
-                                '<iframe class="youtube-player" type="text/html" width="560" height="315" src="http://www.youtube.com/embed/{VideoID}" frameborder="0" allowfullscreen>',
-                                '</iframe>',
-                              '</div>',
+                              '<iframe width="300" height="200" src="http://www.youtube.com/embed/{VideoID}" frameborder="0" allowfullscreen>',
+                              '</iframe><br>',
                               '</tpl>',
                               // a configuration object:
                               {
