@@ -10,6 +10,7 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
 			{
 				xtype: "toolbar",
 				docked: "top",
+				cls: "toolbarRicetta",
 				title: "Ricetta Name",
 				items: [
 					{
@@ -29,6 +30,7 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
             {
                 xtype: "toolbar",
                 docked: "bottom",
+                cls: "toolbarRicetta",
                 title: "Autore: Fonte"
             }
 		]
@@ -79,6 +81,7 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
                 carouselUi.add({
                     title: 'Ingredienti',
                     xtype   : 'panel',
+                    cls: "testoRicetta",
                     html: "<h2>Ingredienti</h2>" + ingredienti,
                     flex: 1,
                     scrollable: {
@@ -88,8 +91,9 @@ Ext.define("LaPastaMadre.view.RicettaPanel",{
                 });
                 carouselUi.add({
                     title: 'Procedimento',
-                    xtype   : 'panel',
-                    html: "<div style='padding-right: 7%;'><h2>Procedimento</h2>" + procedimento + "</div>",
+                    xtype: 'panel',
+                    cls: "testoRicetta",
+                    html: "<div style='padding-right: 7%;'><h2>Procedimento</h2>" + procedimento + "</div><br><br>",
                     flex: 1,
                     scrollable: {
                         direction: 'vertical',

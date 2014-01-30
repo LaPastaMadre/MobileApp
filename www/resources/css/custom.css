@@ -1,0 +1,15 @@
+/*toolbarRicetta*/
+@media only screen 
+and (max-device-width : 800px) {
+	.toolbarRicetta .x-title .x-innerhtml{
+		font-size:  medium;
+	}
+}
+
+@media only screen
+and (min-device-width : 800px) {
+	.x-container .x-panel .testoRicetta{
+		font-size: large;
+	}
+}
+
