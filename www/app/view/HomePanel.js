@@ -10,8 +10,8 @@ Ext.define("LaPastaMadre.view.HomePanel",{
 			cls: 'homeBackGround',
             src: 'resources/images/sfondo.png',
             centered: true,
-            width: "500px",
-            height: "650px"
+            //width: "500px",
+            //height: "650px"
         }, ]
 	}
 });
