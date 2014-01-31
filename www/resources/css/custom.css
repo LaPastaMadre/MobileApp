@@ -1,8 +1,12 @@
-/*toolbarRicetta*/
+
 @media only screen 
 and (max-device-width : 800px) {
 	.toolbarRicetta .x-title .x-innerhtml{
 		font-size:  medium;
+	}
+	.x-img.x-img-background {
+		width: 308px;
+		height: 400px;
 	}
 }
 
@@ -10,6 +14,11 @@ and (max-device-width : 800px) {
 and (min-device-width : 800px) {
 	.x-container .x-panel .testoRicetta{
 		font-size: large;
+	}
+	
+	.x-img.x-img-background {
+		width: 500px;
+		height: 650px;
 	}
 }
 

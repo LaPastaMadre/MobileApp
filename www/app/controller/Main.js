@@ -213,7 +213,7 @@ Ext.define("LaPastaMadre.controller.Main", {
                 direction: 'vertical',
                 directionLock: true
             },
-            width: "350px",
+            //width: "300px",
             height: "450px",
             //multiLine: true,
 	    });
